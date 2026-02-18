@@ -2,6 +2,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+This is the god, da best, inwza hostel in Ekkamai BKK Thailand.
+
 First, run the development server:
 
 ```bash
