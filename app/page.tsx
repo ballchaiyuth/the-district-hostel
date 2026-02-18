@@ -1,9 +1,10 @@
-import Image from "next/image";
-
+import Header from "@/components/header";
+import Body from "@/components/body";
 export default function Home() {
   return (
     <>
-      <h1>Welcome to My Next.js App</h1>
+      <Header />
+      <Body />
     </>
   );
 }
