@@ -1,79 +1,102 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
+import MenuOverlay from "./MenuOverlay";
+
 const Header = () => {
-  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header>
-      <div className="relative h-screen  ">
-        {/* Background */}
-        <div
-          className={`${
-            isSideBarOpen ? "opacity-100" : " opacity-0"
-          } flex flex-col absolute top-30 left-20 text-8xl z-20 text-white transition-all duration-500 ease-in-out`}
-        >
-          <h1>The District</h1>
-          <h1>genuine hostel service</h1>
-        </div>
-        <div className="absolute inset-0 bg-[url('/header_bg.jpg')] bg-cover "></div>
-        <div
-          className={`absolute  ease-in-out transition-all duration-500 inset-0 ${isSideBarOpen ? "w-[40vh]" : "w-20"}`}
-          onMouseEnter={() => setIsSideBarOpen(true)}
-        >
-          {/* Sidebar background */}
-          <div className="absolute inset-0 bg-black/50"></div>
+    <>
+      <header className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-md">
+        <div className="relative z-10 flex items-center justify-between py-4 px-6 border-b border-white/10">
+          {/* Left: Hamburger & Brand Logo */}
+          <div className="flex items-center gap-4 md:gap-6">
+            <button
+              onClick={() => setIsMenuOpen(true)}
+              className="group relative h-8 w-8 shrink-0"
+            >
+              <img
+                src="/icons/ui/menu-white.svg"
+                className="absolute inset-0 h-full w-full cursor-pointer transition-opacity duration-300 group-hover:opacity-0"
+                alt="Menu White"
+              />
+              <img
+                src="/icons/ui/menu-orange.svg"
+                className="absolute inset-0 h-full w-full cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                alt="Menu Orange"
+              />
+            </button>
 
-          {/* Vertical content */}
-          <div
-            className={`absolute inset-0 bg-black/40 flex flex-col items-center justify-center ${isSideBarOpen ? "hidden" : ""}`}
-          >
-            <p className="[writing-mode:vertical-rl] rotate-180 tracking-[0.3em] text-white text-sm">
-              STAY WITH US
-            </p>
-            <img src="/chevron_right.svg" className="h-6 w-6 mt-4" />
+            <Link href="/">
+              <h1 className="text-white text-xl md:text-2xl font-extrabold tracking-tighter truncate">
+                THE DISTRICT
+              </h1>
+            </Link>
           </div>
 
-          {/* Menu icon (on top) */}
-          <img
-            src="/menu.svg"
-            className="absolute top-4 left-4 h-10 w-8 cursor-pointer z-20"
-          />
-
-          <img
-            src="/chevron_left.svg"
-            className={`absolute bottom-0 right-0 cursor-pointer z-20 h-10 w-10 ${isSideBarOpen ? "" : "hidden"}`}
-            onClick={() => setIsSideBarOpen(false)}
-          ></img>
-        </div>
-
-        {/* Navbar */}
-        <div className="relative z-10 flex justify-center lg:justify-between items-stretch py-4 border-b-2 border-white">
-          <div className="flex items-center gap-4">
-            <h1 className="text-white text-3xl font-extrabold lg:ml-24">
-              The District
-            </h1>
+          {/* Right: Mobile Language Selector */}
+          <div className="flex lg:hidden items-center gap-4">
+            <button onClick={() => console.log("Language changed to UK")}>
+              <img
+                src="/icons/flags/flag-uk.svg"
+                className="h-6 w-6 cursor-pointer active:scale-90 transition-transform"
+                alt="UK Flag"
+              />
+            </button>
           </div>
-          <div className=" hidden lg:text-4xl lg:text-white  lg:flex lg:items-center lg:px-6 lg:gap-12">
-            <div className="flex text-2xl gap-8">
-              <p className=" cursor-pointer">Story</p>
-              <p className=" cursor-pointer">offers</p>
-              <p className=" cursor-pointer">Gallery</p>
-              <p className=" cursor-pointer">Blog</p>
-              <div>
+
+          {/* Right: Desktop Navigation & CTA */}
+          <div className="hidden lg:flex items-center gap-8 text-white text-sm tracking-[0.2em]">
+            <nav className="flex gap-8">
+              <Link
+                href="/story"
+                className="hover:text-orange-400 transition-colors"
+              >
+                STORY
+              </Link>
+              <Link
+                href="/offers"
+                className="hover:text-orange-400 transition-colors"
+              >
+                OFFERS
+              </Link>
+              <Link
+                href="/gallery"
+                className="hover:text-orange-400 transition-colors"
+              >
+                GALLERY
+              </Link>
+              <Link
+                href="/blog"
+                className="hover:text-orange-400 transition-colors"
+              >
+                BLOG
+              </Link>
+            </nav>
+
+            <div className="flex items-center gap-6 border-l border-white/20 pl-8">
+              <button onClick={() => console.log("Language changed to UK")}>
                 <img
-                  src="/flag_uk.svg"
-                  className="h-full min-w-8 w-8 cursor-pointer"
+                  src="/icons/flags/flag-uk.svg"
+                  className="h-6 w-6 cursor-pointer hover:opacity-80 transition-opacity"
+                  alt="UK Flag"
                 />
-              </div>
-            </div>
-            <div className="relative flex items-center pl-6">
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-white"></div>
-              <p className="cursor-pointer">Check Availability</p>
+              </button>
+
+              <button
+                onClick={() => console.log("Check Availability")}
+                className="border border-white px-6 py-2 text-[10px] font-bold uppercase hover:bg-white hover:text-black transition-all cursor-pointer"
+              >
+                Check Availability
+              </button>
             </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+    </>
   );
 };
 
