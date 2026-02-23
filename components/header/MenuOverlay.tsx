@@ -1,17 +1,19 @@
 "use client";
+
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
 interface MenuOverlayProps {
   isOpen: boolean;
   onClose: () => void;
+  onBookingClick: () => void;
 }
 
-const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
+const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
   const [animate, setAnimate] = useState(false);
   const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
 
-  // Sync state with props during render to handle visibility toggle
+  // Sync animation state with visibility toggle
   if (isOpen !== prevIsOpen) {
     setPrevIsOpen(isOpen);
     if (!isOpen) setAnimate(false);
@@ -20,7 +22,7 @@ const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
   useEffect(() => {
     if (!isOpen) return;
 
-    // Trigger entrance animation and lock scroll
+    // Trigger entrance animation and prevent body scroll
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => setAnimate(true), 10);
 
@@ -53,6 +55,7 @@ const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
     "FACILITIES",
     "CONTACT",
   ];
+
   const menuLinkStyle = `w-full py-3 text-center text-base font-light tracking-[0.25em] text-white/80 hover:text-orange-400 uppercase transition-[opacity,transform] duration-400`;
 
   return (
@@ -69,6 +72,7 @@ const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
           ${animate ? "translate-y-0 scale-100 opacity-100" : "translate-y-4 scale-[0.98] opacity-0"}
         `}
       >
+        {/* Close Button */}
         <button
           onClick={onClose}
           className="fixed right-6 top-6 z-[120] text-3xl font-light text-white/40 transition-colors duration-0 hover:text-orange-400 hover:rotate-90 lg:absolute cursor-pointer"
@@ -78,7 +82,7 @@ const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
 
         <nav className="flex flex-col items-center px-8 py-24 lg:py-16">
           <div className="flex w-full flex-col items-center">
-            {/* Primary Navigation (Mobile) */}
+            {/* Primary Navigation (Mobile Only) */}
             <div className="flex w-full flex-col items-center lg:hidden">
               {mainItems.map((item, index) => (
                 <div
@@ -118,14 +122,14 @@ const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
             ))}
           </div>
 
-          {/* Action Button (Mobile Only) */}
+          {/* Booking CTA (Mobile Only) */}
           <div
             className={`mt-10 w-full flex justify-center lg:hidden transition-all duration-400 delay-300 ${
               animate ? "scale-100 opacity-100" : "scale-95 opacity-0"
             }`}
           >
             <button
-              onClick={() => console.log("Check Availability")}
+              onClick={onBookingClick}
               className="w-full max-w-[240px] border border-white/20 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:bg-white hover:text-black transition-none cursor-pointer"
             >
               Check Availability

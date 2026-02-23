@@ -1,10 +1,13 @@
 "use client";
+
+import BookingModal from "@/components/booking/BookingModal";
+import MenuOverlay from "@/components/header/MenuOverlay";
 import Link from "next/link";
 import { useState } from "react";
-import MenuOverlay from "./MenuOverlay";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   return (
     <>
@@ -85,7 +88,7 @@ const Header = () => {
               </button>
 
               <button
-                onClick={() => console.log("Check Availability")}
+                onClick={() => setIsBookingOpen(true)}
                 className="border border-white px-6 py-2 text-[10px] font-bold uppercase hover:bg-white hover:text-black transition-all cursor-pointer"
               >
                 Check Availability
@@ -95,7 +98,20 @@ const Header = () => {
         </div>
       </header>
 
-      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      {/* Navigation Overlays */}
+      <MenuOverlay
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onBookingClick={() => {
+          setIsMenuOpen(false);
+          setIsBookingOpen(true);
+        }}
+      />
+
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
     </>
   );
 };
