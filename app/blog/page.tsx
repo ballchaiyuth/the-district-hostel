@@ -90,7 +90,8 @@ export default function BlogPage() {
                     <SafeImage
                       src={blog.image}
                       alt={blog.title}
-                      className="object-cover w-full h-full opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1s] ease-out"
+                      preload={blog.id === "001" || blog.id === "002"}
+                      className="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1s] ease-out"
                     />
                   </Link>
                 </div>

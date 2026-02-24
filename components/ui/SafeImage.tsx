@@ -1,9 +1,11 @@
 "use client";
 
 import { BRAND_ASSETS } from "@/constants/branding";
-import { useEffect, useState } from "react";
+import Image, { ImageProps } from "next/image";
+import { useState } from "react";
 
-interface SafeImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
+interface SafeImageProps extends Omit<ImageProps, "src"> {
+  src: string;
   fallback?: string;
 }
 
@@ -14,23 +16,27 @@ export default function SafeImage({
   className,
   ...props
 }: SafeImageProps) {
-  const [imgSrc, setImgSrc] = useState<string>((src as string) || fallback);
+  const [error, setError] = useState<boolean>(false);
+  const [prevSrc, setPrevSrc] = useState<string>(src);
 
-  useEffect(() => {
-    setImgSrc((src as string) || fallback);
-  }, [src, fallback]);
+  // Sync state during render to avoid cascading renders
+  if (src !== prevSrc) {
+    setError(false);
+    setPrevSrc(src);
+  }
 
   return (
-    <img
-      {...props}
-      src={imgSrc}
-      alt={alt}
-      className={className}
-      onError={() => {
-        if (imgSrc !== fallback) {
-          setImgSrc(fallback);
-        }
-      }}
-    />
+    <div className="relative w-full h-full overflow-hidden">
+      <Image
+        fill
+        {...props}
+        src={error || !src ? fallback : src}
+        alt={alt}
+        className={`object-cover ${className}`}
+        onError={() => setError(true)}
+        suppressHydrationWarning
+        unoptimized
+      />
+    </div>
   );
 }

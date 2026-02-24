@@ -27,7 +27,8 @@ export default function OffersPage() {
               <SafeImage
                 src="/images/offers/offer-1.jpg"
                 alt="Stay"
-                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-[1.5s] opacity-70 group-hover:opacity-100"
+                preload={true}
+                className="group-hover:scale-110 transition-transform duration-[1.5s] opacity-70 group-hover:opacity-100"
               />
             </div>
           </div>
@@ -65,7 +66,7 @@ export default function OffersPage() {
               <SafeImage
                 src="/images/offers/offer-2.jpg"
                 alt="Experience"
-                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-[1.5s] opacity-70 group-hover:opacity-100"
+                className="group-hover:scale-110 transition-transform duration-[1.5s] opacity-70 group-hover:opacity-100"
               />
             </div>
           </div>
@@ -103,7 +104,7 @@ export default function OffersPage() {
               <SafeImage
                 src="/images/offers/offer-3.jpg"
                 alt="Dining"
-                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-[1.5s] opacity-70 group-hover:opacity-100"
+                className="group-hover:scale-110 transition-transform duration-[1.5s] opacity-70 group-hover:opacity-100"
               />
             </div>
           </div>
@@ -116,7 +117,7 @@ export default function OffersPage() {
             </h2>
             <p className="text-white/50 leading-relaxed font-light tracking-wide text-lg max-w-md">
               From Michelin-starred fine dining to generational street food
-              stalls, discover why Ekkamai is Bangkok's most celebrated culinary
+              stalls, discover why Ekkamai is Bangkok’s most celebrated culinary
               destination.
             </p>
             <button className="group flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase cursor-pointer">
