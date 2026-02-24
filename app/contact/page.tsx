@@ -50,9 +50,7 @@ export default function ContactPage() {
                 <h3 className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
                   Reservations
                 </h3>
-                <p className="text-neutral-300 font-light">
-                  +66 (0) 2 123 4567
-                </p>
+                <p className="text-neutral-300 font-light">099-999-9999</p>
                 <p className="text-neutral-300 font-light">
                   stay@thedistrict.com
                 </p>

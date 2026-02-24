@@ -49,11 +49,11 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
   ];
 
   const secondaryItems = [
-    "STAY",
-    "DINE",
-    "NEIGHBOURHOOD",
-    "FACILITIES",
-    "CONTACT",
+    { label: "STAY", href: "/stay" },
+    { label: "DINE", href: "/dine" },
+    { label: "NEIGHBOURHOOD", href: "/neighbourhood" },
+    { label: "FACILITIES", href: "/facilities" },
+    { label: "CONTACT", href: "/contact" },
   ];
 
   const menuLinkStyle = `w-full py-3 text-center text-base font-light tracking-[0.25em] text-white/80 hover:text-orange-400 uppercase transition-[opacity,transform] duration-400`;
@@ -104,17 +104,18 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
 
             {/* Secondary Navigation Items */}
             {secondaryItems.map((item, index) => (
-              <div key={item} className="w-full flex flex-col items-center">
-                <button
-                  onClick={() => {
-                    console.log(`Clicked: ${item}`);
-                    onClose();
-                  }}
+              <div
+                key={item.label}
+                className="w-full flex flex-col items-center"
+              >
+                <Link
+                  href={item.href}
+                  onClick={onClose}
                   style={{ transitionDelay: `${(index + 4) * 30 + 50}ms` }}
                   className={`${menuLinkStyle} ${animate ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0"} cursor-pointer`}
                 >
-                  {item}
-                </button>
+                  {item.label}
+                </Link>
                 {index !== secondaryItems.length - 1 && (
                   <div className="w-12 h-[0.5px] bg-white/10 mx-auto" />
                 )}
