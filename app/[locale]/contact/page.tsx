@@ -106,7 +106,7 @@ export default function ContactPage() {
       {/* Google Maps Section */}
       <section className="h-[450px] w-full bg-neutral-800 lg:grayscale lg:invert lg:opacity-80 lg:hover:grayscale-0 lg:hover:invert-0 lg:hover:opacity-100 transition-all duration-1000">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.786584285744!2d100.5841!3d13.7314"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.7876931510045!2d100.5847339750899!3d13.731299786658452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f9264b0d963%3A0xc9228ff571ef2223!2sThe%20District%20Hostel%20Ekkamai!5e0!3m2!1sen!2sth!4v1771848992927!5m2!1sen!2sth"
           width="100%"
           height="100%"
           style={{ border: 0 }}
