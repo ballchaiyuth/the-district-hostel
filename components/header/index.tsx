@@ -1,101 +1,95 @@
 "use client";
-import Link from "next/link";
+
+import BookingModal from "@/components/booking/BookingModal";
+import MenuOverlay from "@/components/header/MenuOverlay";
+import LocaleSwitcher from "@/components/ui/LocaleSwitcher";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import MenuOverlay from "./MenuOverlay";
 
 const Header = () => {
+  const t = useTranslations("Navigation");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
+  const navLinks = [
+    { href: "/story", label: t("story") },
+    { href: "/offers", label: t("offers") },
+    { href: "/gallery", label: t("gallery") },
+    { href: "/blog", label: t("blog") },
+  ];
 
   return (
     <>
       <header className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-md">
         <div className="relative z-10 flex items-center justify-between py-4 px-6 border-b border-white/10">
-          {/* Left: Hamburger & Brand Logo */}
+          {/* Left: Menu & Brand */}
           <div className="flex items-center gap-4 md:gap-6">
             <button
               onClick={() => setIsMenuOpen(true)}
-              className="group relative h-8 w-8 shrink-0"
+              className="group relative h-8 w-8 shrink-0 cursor-pointer"
+              aria-label="Open Menu"
             >
               <img
                 src="/icons/ui/menu-white.svg"
-                className="absolute inset-0 h-full w-full cursor-pointer transition-opacity duration-300 group-hover:opacity-0"
-                alt="Menu White"
+                className="absolute inset-0 h-full w-full transition-opacity duration-300 group-hover:opacity-0"
+                alt=""
               />
               <img
                 src="/icons/ui/menu-orange.svg"
-                className="absolute inset-0 h-full w-full cursor-pointer opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                alt="Menu Orange"
+                className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                alt=""
               />
             </button>
-
             <Link href="/">
-              <h1 className="text-white text-xl md:text-2xl font-extrabold tracking-tighter truncate">
+              <h1 className="text-white text-xl md:text-2xl font-extrabold tracking-tighter truncate uppercase">
                 THE DISTRICT
               </h1>
             </Link>
           </div>
 
-          {/* Right: Mobile Language Selector */}
-          <div className="flex lg:hidden items-center gap-4">
-            <button onClick={() => console.log("Language changed to UK")}>
-              <img
-                src="/icons/flags/flag-uk.svg"
-                className="h-6 w-6 cursor-pointer active:scale-90 transition-transform"
-                alt="UK Flag"
-              />
-            </button>
-          </div>
-
-          {/* Right: Desktop Navigation & CTA */}
-          <div className="hidden lg:flex items-center gap-8 text-white text-sm tracking-[0.2em]">
-            <nav className="flex gap-8">
-              <Link
-                href="/story"
-                className="hover:text-orange-400 transition-colors"
-              >
-                STORY
-              </Link>
-              <Link
-                href="/offers"
-                className="hover:text-orange-400 transition-colors"
-              >
-                OFFERS
-              </Link>
-              <Link
-                href="/gallery"
-                className="hover:text-orange-400 transition-colors"
-              >
-                GALLERY
-              </Link>
-              <Link
-                href="/blog"
-                className="hover:text-orange-400 transition-colors"
-              >
-                BLOG
-              </Link>
+          {/* Right: Navigation & Actions */}
+          <div className="flex items-center gap-4 lg:gap-8">
+            <nav className="hidden lg:flex gap-8 text-white text-sm tracking-[0.2em] uppercase">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="hover:text-orange-400 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
 
-            <div className="flex items-center gap-6 border-l border-white/20 pl-8">
-              <button onClick={() => console.log("Language changed to UK")}>
-                <img
-                  src="/icons/flags/flag-uk.svg"
-                  className="h-6 w-6 cursor-pointer hover:opacity-80 transition-opacity"
-                  alt="UK Flag"
-                />
-              </button>
+            <div className="flex items-center gap-4 lg:gap-6 lg:border-l lg:border-white/20 lg:pl-8">
+              <LocaleSwitcher />
 
               <button
-                onClick={() => console.log("Check Availability")}
-                className="border border-white px-6 py-2 text-[10px] font-bold uppercase hover:bg-white hover:text-black transition-all cursor-pointer"
+                onClick={() => setIsBookingOpen(true)}
+                className="hidden sm:block border border-white text-white px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors duration-300 cursor-pointer"
               >
-                Check Availability
+                {t("checkAvailability")}
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      {/* Overlays & Modals */}
+      <MenuOverlay
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onBookingClick={() => {
+          setIsMenuOpen(false);
+          setIsBookingOpen(true);
+        }}
+      />
+
+      <BookingModal
+        isOpen={isBookingOpen}
+        onClose={() => setIsBookingOpen(false)}
+      />
     </>
   );
 };
