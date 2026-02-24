@@ -3,6 +3,7 @@
 import BookingModal from "@/components/booking/BookingModal";
 import MenuOverlay from "@/components/header/MenuOverlay";
 import LocaleSwitcher from "@/components/ui/LocaleSwitcher";
+import SafeImage from "@/components/ui/SafeImage";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
@@ -30,16 +31,22 @@ const Header = () => {
               className="group relative h-8 w-8 shrink-0 cursor-pointer"
               aria-label="Open Menu"
             >
-              <img
-                src="/icons/ui/menu-white.svg"
-                className="absolute inset-0 h-full w-full transition-opacity duration-300 group-hover:opacity-0"
-                alt=""
-              />
-              <img
-                src="/icons/ui/menu-orange.svg"
-                className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                alt=""
-              />
+              {/* Menu Icon: White (Default) */}
+              <div className="absolute inset-0 h-full w-full transition-opacity duration-300 group-hover:opacity-0">
+                <SafeImage
+                  src="/icons/ui/menu-white.svg"
+                  alt="Menu icon"
+                  unoptimized
+                />
+              </div>
+              {/* Menu Icon: Orange (Hover) */}
+              <div className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <SafeImage
+                  src="/icons/ui/menu-orange.svg"
+                  alt="Menu icon active"
+                  unoptimized
+                />
+              </div>
             </button>
             <Link href="/">
               <h1 className="text-white text-xl md:text-2xl font-extrabold tracking-tighter truncate uppercase">

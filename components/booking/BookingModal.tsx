@@ -1,5 +1,6 @@
 "use client";
 
+import SafeImage from "@/components/ui/SafeImage";
 import dayjs from "dayjs";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
@@ -129,11 +130,16 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     }`}
                   >
                     <span className="text-sm font-bold">{option}</span>
-                    <img
-                      src="/icons/ui/users.svg"
-                      className={`h-4 w-4 rounded-[2px] ${guests === option ? "bg-amber-500" : "bg-neutral-400"}`}
-                      alt="Users"
-                    />
+                    <div className="w-4 h-4 overflow-hidden rounded-[2px]">
+                      <SafeImage
+                        src="/icons/ui/users.svg"
+                        alt="Users icon"
+                        className={`transition-colors duration-300 ${
+                          guests === option ? "bg-amber-500" : "bg-neutral-400"
+                        }`}
+                        unoptimized
+                      />
+                    </div>
                   </button>
                 ))}
               </div>
