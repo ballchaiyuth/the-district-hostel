@@ -3,9 +3,11 @@ import { routing } from "./routing";
 
 /**
  * Immutable deep merge to prevent mutation of the base (fallback) messages.
+ * * NOTE: Using 'any' here as translation messages are dynamic nested objects
+ * from JSON, and complex recursive typing would over-engineer this utility.
  */
-function deepMerge(target: any, source: any) {
-  // Create a new object to avoid mutating the original target
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function deepMerge(target: any, source: any): any {
   const output = { ...target };
 
   for (const key in source) {
@@ -21,7 +23,10 @@ function deepMerge(target: any, source: any) {
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;
 
-  if (!locale || !routing.locales.includes(locale as any)) {
+  if (
+    !locale ||
+    !routing.locales.includes(locale as (typeof routing.locales)[number])
+  ) {
     locale = routing.defaultLocale;
   }
 
@@ -33,7 +38,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
 
   return {
     locale,
-    // Merge locale messages over base messages
     messages: deepMerge(baseMessages, localeMessages),
   };
 });

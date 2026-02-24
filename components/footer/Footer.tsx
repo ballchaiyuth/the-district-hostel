@@ -1,5 +1,6 @@
 "use client";
 
+import SafeImage from "@/components/ui/SafeImage";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
@@ -38,10 +39,13 @@ const Footer = () => {
   return (
     <footer className="relative bg-black text-white">
       {/* Background with Ambient Overlay */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-center opacity-30"
-        style={{ backgroundImage: "url('/images/branding/cover.jpg')" }}
-      />
+      <div className="absolute inset-0 z-0 opacity-30">
+        <SafeImage
+          src="/images/branding/cover.jpg"
+          alt="Footer background"
+          unoptimized
+        />
+      </div>
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/80 to-transparent" />
 
       {/* Main Content Container */}
@@ -83,11 +87,14 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     className="opacity-60 hover:opacity-100 transition-opacity"
                   >
-                    <img
-                      src={item.icon}
-                      alt={item.name}
-                      className="w-5 h-5 invert"
-                    />
+                    <div className="w-5 h-5 overflow-hidden">
+                      <SafeImage
+                        src={item.icon}
+                        alt={item.name}
+                        className="invert"
+                        unoptimized
+                      />
+                    </div>
                   </a>
                 ))}
               </div>
@@ -96,11 +103,12 @@ const Footer = () => {
 
           {/* 2. Branding Central */}
           <div className="flex flex-col items-center justify-center space-y-4">
-            <img
-              src="/images/branding/logo.jpg"
-              alt="Logo"
-              className="w-32 md:w-44 rounded-2xl border border-white/5 shadow-lg"
-            />
+            <div className="relative w-32 md:w-44 aspect-square overflow-hidden rounded-2xl border border-white/5 shadow-lg">
+              <SafeImage
+                src="/images/branding/logo.jpg"
+                alt="The District Logo"
+              />
+            </div>
             <p className="text-[8px] tracking-[0.4em] uppercase font-light text-white/40 text-center">
               {t("brandName")} Hotel
             </p>
