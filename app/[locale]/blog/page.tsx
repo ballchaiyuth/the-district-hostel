@@ -1,9 +1,11 @@
-"use client";
-
 import SafeImage from "@/components/ui/SafeImage";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 
 export default function BlogPage() {
+  const t = useTranslations("BlogPage");
+  const containerClass = "max-w-7xl mx-auto px-6 md:px-12 lg:px-16";
+
   const blogs = [
     {
       id: "001",
@@ -61,15 +63,12 @@ export default function BlogPage() {
     },
   ];
 
-  const containerClass = "max-w-7xl mx-auto px-6 md:px-12 lg:px-16";
-
   return (
     <main className="bg-neutral-950 text-white min-h-screen">
-      {/* Header */}
       <div className="py-24 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
           <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white">
-            Blog
+            {t("header")}
           </h1>
           <div className="mx-auto mt-8 h-[1px] w-24 bg-orange-500"></div>
         </div>
@@ -98,7 +97,7 @@ export default function BlogPage() {
 
                 {/* Info Section */}
                 <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] text-orange-500">
+                  <div className="flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-orange-500 uppercase">
                     <span>{blog.category}</span>
                     <span className="w-8 h-[1px] bg-white/20"></span>
                     <span className="text-white/40">{blog.date}</span>
@@ -119,7 +118,7 @@ export default function BlogPage() {
                     className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase pt-2"
                   >
                     <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
-                      Read Article
+                      {t("readMore")}
                     </span>
                     <span className="text-orange-500 group-hover:translate-x-2 transition-transform">
                       →
@@ -136,7 +135,7 @@ export default function BlogPage() {
       <div className="py-20 bg-neutral-950 border-t border-white/5">
         <div className={`${containerClass} text-center`}>
           <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/30">
-            Stay Updated with the District
+            {t("footerBranding")}
           </p>
         </div>
       </div>

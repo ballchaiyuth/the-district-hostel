@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 /**
@@ -46,6 +47,7 @@ const AutoSlideImage = ({
 };
 
 export default function GalleryPage() {
+  const t = useTranslations("GalleryPage");
   const containerClass = "max-w-7xl mx-auto px-6 md:px-12 lg:px-16";
 
   return (
@@ -54,7 +56,7 @@ export default function GalleryPage() {
       <div className="py-24 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
           <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white">
-            Gallery
+            {t("header")}
           </h1>
           <div className="mx-auto mt-8 h-[1px] w-24 bg-orange-500"></div>
         </div>
@@ -130,7 +132,7 @@ export default function GalleryPage() {
 
           <div className="mt-16 text-center">
             <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/30">
-              Curated Moments at the District
+              {t("curated")}
             </p>
           </div>
         </div>

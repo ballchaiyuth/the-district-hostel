@@ -1,0 +1,108 @@
+{
+  "Metadata": {
+    "title": "The District Ekkamai | Genuine Hostel Service",
+    "description": "Discover the best hostel experience in Ekkamai, Bangkok."
+  },
+  "Common": {
+    "brandName": "The District Ekkamai",
+    "locationLabel": "Location",
+    "address": "126/31 Floor 2, Park Avenue, Soi Sukhumvit 63, Khlong Tan Nuea, Watthana, Bangkok 10110",
+    "reservations": "Reservations",
+    "inquiries": "General Inquiries"
+  },
+  "Navigation": {
+    "checkAvailability": "Check Availability",
+    "story": "Story",
+    "offers": "Offers",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "stay": "Stay",
+    "dine": "Dine",
+    "neighbourhood": "Neighbourhood",
+    "facilities": "Facilities",
+    "contact": "Contact",
+    "goGreen": "Go Green",
+    "privacy": "Privacy Policy"
+  },
+  "Booking": {
+    "header": "Availability",
+    "guestsLabel": "Number of Guests",
+    "selectDates": "Select Dates to Continue",
+    "confirm": "Confirm Booking",
+    "clear": "Clear Selection",
+    "alertMessage": "Booking for {guests} people: {start} - {end}"
+  },
+  "HomePage": {
+    "title": "The District",
+    "subtitle": "Genuine Hostel Service",
+    "cta": "Explore Ekkamai"
+  },
+  "StoryPage": {
+    "title": "Our Story",
+    "status": "Coming Soon",
+    "description": "Crafting genuine hostel hospitality in the vibrant heart of Ekkamai district."
+  },
+  "OffersPage": {
+    "header": "Offers",
+    "stay": {
+      "tag": "Stay",
+      "title": "Flexible\nUrban Living",
+      "desc": "Whether for a quick getaway or an extended residence, we provide the perfect sanctuary for you to explore the vibrant soul of Ekkamai.",
+      "cta": "Discover More"
+    },
+    "experience": {
+      "tag": "Experience",
+      "title": "The Heart\nof Bangkok",
+      "desc": "Immerse yourself in a district where luxury malls meet hidden bars and legendary street food—all within reach of your peaceful retreat.",
+      "cta": "Explore Now"
+    },
+    "dining": {
+      "tag": "Dine & Unwind",
+      "title": "A Flavorful\nHeritage",
+      "desc": "From Michelin-starred fine dining to generational street food stalls, discover why Ekkamai is Bangkok’s most celebrated culinary destination.",
+      "cta": "View Selection"
+    }
+  },
+  "GalleryPage": {
+    "header": "Gallery",
+    "curated": "Curated Moments at the District"
+  },
+  "BlogPage": {
+    "header": "Blog",
+    "readMore": "Read Article",
+    "footerBranding": "Stay Updated with the District"
+  },
+  "StayPage": {
+    "header": "Stay",
+    "status": "Refined Living Experience Coming Soon"
+  },
+  "DinePage": {
+    "header": "Dine",
+    "status": "Culinary Excellence Coming Soon"
+  },
+  "NeighbourhoodPage": {
+    "header": "Neighbourhood",
+    "status": "Ekkamai Local Guide Under Curation"
+  },
+  "FacilitiesPage": {
+    "header": "Facilities",
+    "status": "Elevated Amenities Under Curation"
+  },
+  "GoGreenPage": {
+    "header": "Go Green",
+    "status": "Our Commitment to a Greener Future"
+  },
+  "PrivacyPage": {
+    "header": "Privacy Policy",
+    "status": "Ensuring Your Security and Comfort"
+  },
+  "ContactPage": {
+    "header": "Contact",
+    "form": {
+      "name": "NAME",
+      "email": "EMAIL",
+      "message": "MESSAGE",
+      "submit": "Send Message"
+    }
+  }
+}

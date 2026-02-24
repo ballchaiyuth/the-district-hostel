@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 interface MenuOverlayProps {
@@ -10,6 +11,7 @@ interface MenuOverlayProps {
 }
 
 const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
+  const t = useTranslations("Navigation");
   const [animate, setAnimate] = useState(false);
   const [prevIsOpen, setPrevIsOpen] = useState(isOpen);
 
@@ -21,17 +23,12 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
 
   useEffect(() => {
     if (!isOpen) return;
-
-    // Trigger entrance animation and prevent body scroll
     document.body.style.overflow = "hidden";
     const timer = setTimeout(() => setAnimate(true), 10);
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-
     window.addEventListener("keydown", handleKeyDown);
-
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       clearTimeout(timer);
@@ -42,18 +39,18 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
   if (!isOpen) return null;
 
   const mainItems = [
-    { label: "STORY", href: "/story" },
-    { label: "OFFERS", href: "/offers" },
-    { label: "GALLERY", href: "/gallery" },
-    { label: "BLOG", href: "/blog" },
+    { label: t("story"), href: "/story" },
+    { label: t("offers"), href: "/offers" },
+    { label: t("gallery"), href: "/gallery" },
+    { label: t("blog"), href: "/blog" },
   ];
 
   const secondaryItems = [
-    { label: "STAY", href: "/stay" },
-    { label: "DINE", href: "/dine" },
-    { label: "NEIGHBOURHOOD", href: "/neighbourhood" },
-    { label: "FACILITIES", href: "/facilities" },
-    { label: "CONTACT", href: "/contact" },
+    { label: t("stay"), href: "/stay" },
+    { label: t("dine"), href: "/dine" },
+    { label: t("neighbourhood"), href: "/neighbourhood" },
+    { label: t("facilities"), href: "/facilities" },
+    { label: t("contact"), href: "/contact" },
   ];
 
   const menuLinkStyle = `w-full py-3 text-center text-base font-light tracking-[0.25em] text-white/80 hover:text-orange-400 uppercase transition-[opacity,transform] duration-400`;
@@ -61,21 +58,15 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
   return (
     <div
       onClick={onClose}
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-xl transition-opacity duration-400 ease-out overflow-y-auto ${
-        animate ? "opacity-100" : "opacity-0"
-      }`}
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-xl transition-opacity duration-400 ease-out overflow-y-auto ${animate ? "opacity-100" : "opacity-0"}`}
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`relative flex w-full flex-col bg-neutral-900/90 text-white shadow-2xl transition-all duration-400 ease-out
-          h-full lg:h-auto lg:max-w-lg lg:border lg:border-white/5 lg:rounded-2xl
-          ${animate ? "translate-y-0 scale-100 opacity-100" : "translate-y-4 scale-[0.98] opacity-0"}
-        `}
+        className={`relative flex w-full flex-col bg-neutral-900/90 text-white shadow-2xl transition-all duration-400 ease-out h-full lg:h-auto lg:max-w-lg lg:border lg:border-white/5 lg:rounded-2xl ${animate ? "translate-y-0 scale-100 opacity-100" : "translate-y-4 scale-[0.98] opacity-0"}`}
       >
-        {/* Close Button */}
         <button
           onClick={onClose}
-          className="fixed right-6 top-6 z-[120] text-3xl font-light text-white/40 transition-colors duration-0 hover:text-orange-400 hover:rotate-90 lg:absolute cursor-pointer"
+          className="fixed right-6 top-6 z-[120] text-3xl font-light text-white/40 hover:text-orange-400 hover:rotate-90 lg:absolute cursor-pointer"
         >
           ✕
         </button>
@@ -125,15 +116,13 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
 
           {/* Booking CTA (Mobile Only) */}
           <div
-            className={`mt-10 w-full flex justify-center lg:hidden transition-all duration-400 delay-300 ${
-              animate ? "scale-100 opacity-100" : "scale-95 opacity-0"
-            }`}
+            className={`mt-10 w-full flex justify-center lg:hidden transition-all duration-400 delay-300 ${animate ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
           >
             <button
               onClick={onBookingClick}
-              className="w-full max-w-[240px] border border-white/20 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:bg-white hover:text-black transition-none cursor-pointer"
+              className="w-full max-w-[240px] border border-white/20 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:bg-white hover:text-black cursor-pointer"
             >
-              Check Availability
+              {t("checkAvailability")}
             </button>
           </div>
         </nav>

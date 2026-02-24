@@ -2,6 +2,7 @@
 
 import dayjs from "dayjs";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { DateRange, DayPicker, getDefaultClassNames } from "react-day-picker";
 import "react-day-picker/dist/style.css";
@@ -14,6 +15,7 @@ interface BookingModalProps {
 const GUEST_OPTIONS = ["1-2", "3-4", "5-6", "7+"];
 
 export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
+  const t = useTranslations("Booking");
   const [range, setRange] = useState<DateRange | undefined>();
   const [guests, setGuests] = useState("1-2");
   const [month, setMonth] = useState<Date>(new Date());
@@ -26,16 +28,13 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   useEffect(() => {
     if (!isOpen) return;
-
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      // Month navigation via keyboard
       if (e.key === "ArrowRight")
         setMonth((prev) => dayjs(prev).add(1, "month").toDate());
       if (e.key === "ArrowLeft")
         setMonth((prev) => dayjs(prev).subtract(1, "month").toDate());
     };
-
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, onClose]);
@@ -44,7 +43,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
     if (range?.from && range?.to) {
       const start = dayjs(range.from).format("DD MMM YYYY");
       const end = dayjs(range.to).format("DD MMM YYYY");
-      alert(`Booking for ${guests} people: ${start} - ${end}`);
+      alert(t("alertMessage", { guests, start, end }));
     }
   };
 
@@ -78,7 +77,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
             </button>
 
             <h2 className="mb-6 text-center text-[10px] font-bold uppercase tracking-[0.4em] text-neutral-500">
-              Availability
+              {t("header")}
             </h2>
 
             {/* Calendar Custom Styling */}
@@ -91,13 +90,10 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     --rdp-range_middle-color: #f59e0b;
                     --rdp-range_start-background: #f59e0b;
                     --rdp-range_end-background: #f59e0b;
-                    --rdp-day-height: 38px;
-                    --rdp-day-width: 38px;
                   }
                   .rdp-day { color: #a3a3a3; transition: all 0.2s; }
                   .rdp-day:hover:not([disabled]) { background-color: rgba(245, 158, 11, 0.1) !important; color: #f59e0b !important; }
                   .rdp-selected { color: white !important; }
-                  .rdp-day_disabled { opacity: 0.2; cursor: not-allowed; }
                 `}
               </style>
               <DayPicker
@@ -119,7 +115,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
             {/* Guest Selection UI */}
             <div className="mb-8">
               <label className="mb-3 block text-[10px] font-bold uppercase tracking-widest text-neutral-500">
-                Number of Guests
+                {t("guestsLabel")}
               </label>
               <div className="grid grid-cols-2 gap-3">
                 {GUEST_OPTIONS.map((option) => (
@@ -128,16 +124,14 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     onClick={() => setGuests(option)}
                     className={`flex items-center justify-center gap-3 rounded-xl border py-4 transition-all duration-300 cursor-pointer ${
                       guests === option
-                        ? "border-amber-500 bg-amber-500/10 text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.1)]"
+                        ? "border-amber-500 bg-amber-500/10 text-amber-500"
                         : "border-neutral-700 bg-neutral-900/30 text-neutral-400 hover:border-neutral-500"
                     }`}
                   >
                     <span className="text-sm font-bold">{option}</span>
                     <img
                       src="/icons/ui/users.svg"
-                      className={`h-4 w-4 rounded-[2px] transition-all duration-300 ${
-                        guests === option ? "bg-amber-500" : "bg-neutral-400"
-                      }`}
+                      className={`h-4 w-4 rounded-[2px] ${guests === option ? "bg-amber-500" : "bg-neutral-400"}`}
                       alt="Users"
                     />
                   </button>
@@ -153,12 +147,10 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 className={`w-full py-5 text-[11px] font-black uppercase tracking-[0.3em] text-white shadow-lg transition-all active:scale-[0.98] rounded-2xl cursor-pointer ${
                   !range?.from || !range?.to
                     ? "bg-neutral-700 opacity-50 cursor-not-allowed"
-                    : "bg-amber-500 shadow-amber-900/20 hover:bg-amber-600"
+                    : "bg-amber-500 hover:bg-amber-600"
                 }`}
               >
-                {!range?.from || !range?.to
-                  ? "Select Dates to Continue"
-                  : "Confirm Booking"}
+                {!range?.from || !range?.to ? t("selectDates") : t("confirm")}
               </button>
 
               {range && (
@@ -166,7 +158,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   onClick={() => setRange(undefined)}
                   className="w-full text-[10px] text-neutral-500 hover:text-white uppercase tracking-widest transition-colors cursor-pointer"
                 >
-                  Clear Selection
+                  {t("clear")}
                 </button>
               )}
             </div>

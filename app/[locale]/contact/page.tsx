@@ -1,8 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export default function ContactPage() {
+  const t = useTranslations("ContactPage");
+  const common = useTranslations("Common");
   const containerClass = "max-w-7xl mx-auto px-6 md:px-12 lg:px-16";
 
   return (
@@ -20,7 +23,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-light tracking-widest uppercase"
           >
-            Contact
+            {t("header")}
           </motion.h1>
         </div>
       </section>
@@ -34,30 +37,30 @@ export default function ContactPage() {
           <div className="space-y-12">
             <div>
               <h3 className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
-                Location
+                {common("locationLabel")}
               </h3>
               <p className="font-light leading-relaxed text-neutral-300">
-                The District Ekkamai
+                <span className="font-medium text-white">
+                  {common("brandName")}
+                </span>
                 <br />
-                126/31 Floor 2, Park Avenue, Soi Sukhumvit 63,
-                <br />
-                Khlong Tan Nuea, Watthana District, Bangkok 10110
+                {common("address")}
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-white/10">
               <div>
                 <h3 className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
-                  Reservations
+                  {common("reservations")}
                 </h3>
                 <p className="text-neutral-300 font-light">099-999-9999</p>
-                <p className="text-neutral-300 font-light">
+                <p className="text-neutral-300 font-light underline decoration-white/10">
                   stay@thedistrict.com
                 </p>
               </div>
               <div>
                 <h3 className="text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">
-                  General Inquiries
+                  {common("inquiries")}
                 </h3>
                 <p className="text-neutral-300 font-light">
                   hello@thedistrict.com
@@ -66,32 +69,32 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right: Compact Inquiry Form */}
-          <div className="bg-black/20 p-8 md:p-10 rounded-sm border border-white/5 self-start">
+          {/* Right: Contact Form */}
+          <div className="bg-black/20 p-8 md:p-10 rounded-sm border border-white/5 self-start shadow-2xl">
             <form className="space-y-4">
               <div>
                 <input
                   type="text"
-                  placeholder="NAME"
-                  className="w-full bg-transparent border-b border-white/20 py-3 text-sm tracking-widest focus:border-amber-500 outline-none transition-colors placeholder:text-[10px]"
+                  placeholder={t("form.name")}
+                  className="w-full bg-transparent border-b border-white/20 py-3 text-sm tracking-widest focus:border-amber-500 outline-none transition-colors placeholder:text-[10px] uppercase"
                 />
               </div>
               <div>
                 <input
                   type="email"
-                  placeholder="EMAIL"
-                  className="w-full bg-transparent border-b border-white/20 py-3 text-sm tracking-widest focus:border-amber-500 outline-none transition-colors placeholder:text-[10px]"
+                  placeholder={t("form.email")}
+                  className="w-full bg-transparent border-b border-white/20 py-3 text-sm tracking-widest focus:border-amber-500 outline-none transition-colors placeholder:text-[10px] uppercase"
                 />
               </div>
               <div>
                 <textarea
-                  placeholder="MESSAGE"
+                  placeholder={t("form.message")}
                   rows={3}
-                  className="w-full bg-transparent border-b border-white/20 py-3 text-sm tracking-widest focus:border-amber-500 outline-none transition-colors resize-none placeholder:text-[10px]"
+                  className="w-full bg-transparent border-b border-white/20 py-3 text-sm tracking-widest focus:border-amber-500 outline-none transition-colors resize-none placeholder:text-[10px] uppercase"
                 />
               </div>
               <button className="w-full mt-4 border border-white/20 py-4 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all cursor-pointer">
-                Send Message
+                {t("form.submit")}
               </button>
             </form>
           </div>

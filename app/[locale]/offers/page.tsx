@@ -1,8 +1,8 @@
-"use client";
-
 import SafeImage from "@/components/ui/SafeImage";
+import { useTranslations } from "next-intl";
 
 export default function OffersPage() {
+  const t = useTranslations("OffersPage");
   const containerClass = "max-w-7xl mx-auto px-6 md:px-12 lg:px-16";
 
   return (
@@ -11,7 +11,7 @@ export default function OffersPage() {
       <div className="py-24 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
           <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white">
-            Offers
+            {t("header")}
           </h1>
           <div className="mx-auto mt-8 h-[1px] w-24 bg-orange-500"></div>
         </div>
@@ -34,19 +34,17 @@ export default function OffersPage() {
           </div>
           <div className="w-full md:w-1/2 space-y-8">
             <span className="text-orange-500 text-xs font-bold tracking-[0.4em] uppercase">
-              — STAY
+              — {t("stay.tag")}
             </span>
-            <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1]">
-              Flexible <br /> Urban Living
+            <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1] whitespace-pre-line">
+              {t("stay.title")}
             </h2>
             <p className="text-white/50 leading-relaxed font-light tracking-wide text-lg max-w-md">
-              Whether for a quick getaway or an extended residence, we provide
-              the perfect sanctuary for you to explore the vibrant soul of
-              Ekkamai.
+              {t("stay.desc")}
             </p>
             <button className="group flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase cursor-pointer">
               <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
-                Discover More
+                {t("stay.cta")}
               </span>
               <span className="text-orange-500 group-hover:translate-x-2 transition-transform">
                 →
@@ -72,19 +70,17 @@ export default function OffersPage() {
           </div>
           <div className="w-full md:w-1/2 space-y-8">
             <span className="text-orange-500 text-xs font-bold tracking-[0.4em] uppercase">
-              — EXPERIENCE
+              — {t("experience.tag")}
             </span>
-            <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1]">
-              The Heart <br /> of Bangkok
+            <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1] whitespace-pre-line">
+              {t("experience.title")}
             </h2>
             <p className="text-white/50 leading-relaxed font-light tracking-wide text-lg max-w-md">
-              Immerse yourself in a district where luxury malls meet hidden bars
-              and legendary street food—all within reach of your peaceful
-              retreat.
+              {t("experience.desc")}
             </p>
             <button className="group flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase cursor-pointer">
               <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
-                Explore Now
+                {t("experience.cta")}
               </span>
               <span className="text-orange-500 group-hover:translate-x-2 transition-transform">
                 →
@@ -110,19 +106,17 @@ export default function OffersPage() {
           </div>
           <div className="w-full md:w-1/2 space-y-8">
             <span className="text-orange-500 text-xs font-bold tracking-[0.4em] uppercase">
-              — DINE & UNWIND
+              — {t("dining.tag")}
             </span>
-            <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1]">
-              A Flavorful <br /> Heritage
+            <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1] whitespace-pre-line">
+              {t("dining.title")}
             </h2>
             <p className="text-white/50 leading-relaxed font-light tracking-wide text-lg max-w-md">
-              From Michelin-starred fine dining to generational street food
-              stalls, discover why Ekkamai is Bangkok’s most celebrated culinary
-              destination.
+              {t("dining.desc")}
             </p>
             <button className="group flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase cursor-pointer">
               <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
-                View Selection
+                {t("dining.cta")}
               </span>
               <span className="text-orange-500 group-hover:translate-x-2 transition-transform">
                 →

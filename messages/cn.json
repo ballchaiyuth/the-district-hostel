@@ -1,0 +1,108 @@
+{
+  "Metadata": {
+    "title": "The District Ekkamai | 诚挚贴心的青年旅舍服务",
+    "description": "在曼谷艾卡迈 (Ekkamai) 尽享时尚、舒适且充满人情味的住宿体验。"
+  },
+  "Common": {
+    "brandName": "The District Ekkamai",
+    "locationLabel": "地点",
+    "address": "曼谷瓦塔纳县 Khlong Tan Nuea 社区 素坤逸 63 巷 Park Avenue 大厦 2 楼 126/31 号 10110",
+    "reservations": "预订客房",
+    "inquiries": "常规咨询"
+  },
+  "Navigation": {
+    "checkAvailability": "查看空房",
+    "story": "品牌故事",
+    "offers": "特别优惠",
+    "gallery": "画廊",
+    "blog": "文章指南",
+    "stay": "住宿",
+    "dine": "餐饮",
+    "neighbourhood": "周边地区",
+    "facilities": "配套设施",
+    "contact": "联系我们",
+    "goGreen": "绿色环保",
+    "privacy": "隐私政策"
+  },
+  "Booking": {
+    "header": "查看空房",
+    "guestsLabel": "入住人数",
+    "selectDates": "请选择日期以继续",
+    "confirm": "确认预订",
+    "clear": "清除选择",
+    "alertMessage": "预订人数 {guests} 人：从 {start} 至 {end}"
+  },
+  "HomePage": {
+    "title": "The District",
+    "subtitle": "诚挚贴心的青年旅舍服务",
+    "cta": "探索艾卡迈"
+  },
+  "StoryPage": {
+    "title": "品牌故事",
+    "status": "即将登场",
+    "description": "在曼谷艾卡迈核心地带，打造最真诚、最贴心的青年旅舍体验。"
+  },
+  "OffersPage": {
+    "header": "特别优惠",
+    "stay": {
+      "tag": "住宿体验",
+      "title": "随心而居\n悦享城市生活",
+      "desc": "无论是短暂的度假还是长期的居所，我们都为您提供完美的避风港，让您尽情探索艾卡迈 (Ekkamai) 的活力灵魂。",
+      "cta": "了解更多"
+    },
+    "experience": {
+      "tag": "在地体验",
+      "title": "曼谷\n活力之心",
+      "desc": "沉浸在豪华商场、隐藏酒吧与传奇路边摊交织的独特街区——这一切都近在咫尺，静候您的光临。",
+      "cta": "立即探索"
+    },
+    "dining": {
+      "tag": "美食与休闲",
+      "title": "韵味深长的\n美食传承",
+      "desc": "从米其林星级餐厅到传承数代的街头摊位，探索为什么艾卡迈是曼谷最负盛名的美食天堂。",
+      "cta": "查看详情"
+    }
+  },
+  "GalleryPage": {
+    "header": "画廊",
+    "curated": "The District 精选瞬间"
+  },
+  "BlogPage": {
+    "header": "文章指南",
+    "readMore": "阅读文章",
+    "footerBranding": "随时关注 The District 的最新动态"
+  },
+  "StayPage": {
+    "header": "住宿",
+    "status": "精致居住体验 即将登场"
+  },
+  "DinePage": {
+    "header": "餐饮",
+    "status": "卓越烹饪艺术 即将登场"
+  },
+  "NeighbourhoodPage": {
+    "header": "周边地区",
+    "status": "艾卡迈当地指南 正在策划中"
+  },
+  "FacilitiesPage": {
+    "header": "设施",
+    "status": "高品质配套设施 正在策划中"
+  },
+  "GoGreenPage": {
+    "header": "绿色环保",
+    "status": "我们对绿色未来的承诺"
+  },
+  "PrivacyPage": {
+    "header": "隐私政策",
+    "status": "确保您的安全与舒适"
+  },
+  "ContactPage": {
+    "header": "联系我们",
+    "form": {
+      "name": "姓名",
+      "email": "电子邮件",
+      "message": "内容",
+      "submit": "发送消息"
+    }
+  }
+}
