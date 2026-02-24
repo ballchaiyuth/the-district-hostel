@@ -1,34 +1,63 @@
 "use client";
+
+import SafeImage from "@/components/ui/SafeImage";
 import Link from "next/link";
 
 export default function BlogPage() {
   const blogs = [
     {
       id: "001",
-      title: "Exploring the Hidden Gems of Ekkamai",
+      title: "Legendary Flavors: Ekkamai's Iconic Local Eats",
       category: "NEIGHBOURHOOD",
-      date: "FEB 15, 2026",
+      date: "FEB 24, 2026",
       image: "/images/blog/blog-001.jpg",
       description:
-        "From secret cafes to vintage boutiques, discover why Ekkamai remains Bangkok's most charming district.",
+        "From the legendary beef broth of Wattana Panich to the soulful dishes at Chan Chao, explore the culinary heritage that defines our street.",
     },
     {
       id: "002",
-      title: "The Art of Slow Living in a Fast City",
+      title: "The Ultimate Shopping Guide: From Ekkamai to EM District",
       category: "LIFESTYLE",
-      date: "JAN 28, 2026",
+      date: "FEB 20, 2026",
       image: "/images/blog/blog-002.jpg",
       description:
-        "How our sanctuary in the heart of the city helps you find peace amidst the Bangkok hustle.",
+        "Navigate through Bangkok's retail wonders, from the eclectic Donki Mall to the world-class luxury of EMSPHERE and EmQuartier.",
     },
     {
       id: "003",
-      title: "Genuine Hospitality: More Than Just a Service",
-      category: "STORY",
-      date: "JAN 10, 2026",
+      title: "Ekkamai After Dark: Where to Sip and Socialize",
+      category: "NIGHTLIFE",
+      date: "FEB 15, 2026",
       image: "/images/blog/blog-003.jpg",
       description:
-        "A look behind the scenes at how we craft every experience for our guests at The District.",
+        "Experience the vibrant energy of Thai nightlife at Thay Ekkamai or enjoy artisanal brews at Beer Belly and the hidden gems of Thonglor.",
+    },
+    {
+      id: "004",
+      title: "Urban Sanctuary: Parks, Skywalks, and Local Hangouts",
+      category: "NEIGHBOURHOOD",
+      date: "FEB 10, 2026",
+      image: "/images/blog/blog-004.jpg",
+      description:
+        "Find the perfect balance of nature and city at Benjakitti Park's Skywalk, or mingle with the local crowd at The Commons Thonglor.",
+    },
+    {
+      id: "005",
+      title: "Michelin Gastronomy: Fine Dining at Your Doorstep",
+      category: "DINE",
+      date: "FEB 05, 2026",
+      image: "/images/blog/blog-005.jpg",
+      description:
+        "Indulge in a sophisticated journey through Michelin-starred venues like Khao and Stage, showcasing the pinnacle of Bangkok's fine dining.",
+    },
+    {
+      id: "006",
+      title: "Coffee Culture: Ekkamai's Best Specialty Cafes",
+      category: "LIFESTYLE",
+      date: "FEB 01, 2026",
+      image: "/images/blog/blog-006.jpg",
+      description:
+        "Wake up to the aroma of world-class beans. From the artisanal brews at PLYNN House to hidden roasteries, discover Ekkamai's ultimate caffeine fix.",
     },
   ];
 
@@ -36,7 +65,7 @@ export default function BlogPage() {
 
   return (
     <main className="bg-neutral-950 text-white min-h-screen">
-      {/* Header Section */}
+      {/* Header */}
       <div className="py-24 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
           <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white">
@@ -46,33 +75,28 @@ export default function BlogPage() {
         </div>
       </div>
 
-      {/* Blog List Section */}
+      {/* Blog Grid */}
       <section className="bg-neutral-900 py-20 border-b border-white/5">
         <div className={containerClass}>
-          <div className="flex flex-col space-y-24">
-            {blogs.map((blog, index) => (
-              <article
-                key={blog.id}
-                className={`flex flex-col md:flex-row gap-12 items-center group ${
-                  index % 2 !== 0 ? "md:flex-row-reverse" : ""
-                }`}
-              >
-                {/* Image Cover */}
-                <div className="w-full md:w-3/5 overflow-hidden shadow-2xl bg-neutral-900 rounded-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+            {blogs.map((blog) => (
+              <article key={blog.id} className="group flex flex-col space-y-6">
+                {/* Visual Section */}
+                <div className="w-full overflow-hidden shadow-2xl bg-neutral-900 rounded-sm">
                   <Link
                     href={`/blog/${blog.id}`}
                     className="block relative aspect-[16/9] cursor-pointer"
                   >
-                    <img
+                    <SafeImage
                       src={blog.image}
                       alt={blog.title}
-                      className="object-cover w-full h-full opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1.5s] ease-out"
+                      className="object-cover w-full h-full opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1s] ease-out"
                     />
                   </Link>
                 </div>
 
-                {/* Blog Meta & Content */}
-                <div className="w-full md:w-2/5 space-y-6">
+                {/* Info Section */}
+                <div className="space-y-4">
                   <div className="flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] text-orange-500">
                     <span>{blog.category}</span>
                     <span className="w-8 h-[1px] bg-white/20"></span>
@@ -80,18 +104,18 @@ export default function BlogPage() {
                   </div>
 
                   <Link href={`/blog/${blog.id}`}>
-                    <h2 className="text-2xl md:text-3xl font-light tracking-wide text-white uppercase leading-tight hover:text-orange-500 transition-colors cursor-pointer">
+                    <h2 className="text-2xl font-light tracking-wide text-white uppercase leading-tight hover:text-orange-400 transition-colors min-h-[3.5rem]">
                       {blog.title}
                     </h2>
                   </Link>
 
-                  <p className="text-white/50 font-light leading-relaxed tracking-wide text-sm md:text-base">
+                  <p className="text-white/50 font-light leading-relaxed tracking-wide text-sm line-clamp-3">
                     {blog.description}
                   </p>
 
                   <Link
                     href={`/blog/${blog.id}`}
-                    className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase cursor-pointer"
+                    className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase pt-2"
                   >
                     <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
                       Read Article
@@ -109,7 +133,7 @@ export default function BlogPage() {
 
       {/* Footer Branding */}
       <div className="py-20 bg-neutral-950 border-t border-white/5">
-        <div className={`${containerClass} text-center space-y-4`}>
+        <div className={`${containerClass} text-center`}>
           <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/30">
             Stay Updated with the District
           </p>
