@@ -36,13 +36,13 @@ Ekkamai is world-renowned for its dining scene. You can literally taste the hist
 
 ### Ekkamai Essential Guide
 
-| Destination      | Vibe                   | Distance from Hotel |
-| :--------------- | :--------------------- | :------------------ |
-| **The District** | **Your Luxury Base**   | **0m**              |
-| Gateway Ekkamai  | Shopping & BTS         | 350m                |
-| Wattana Panich   | Legendary Beef Noodles | 450m                |
-| Donki Mall       | 24/7 Japanese Hub      | 900m                |
-| THAY Ekkamai     | Iconic Thai Nightlife  | 1.2km               |
+| Destination      | Vibe                   | Distance from Hostel |
+| :--------------- | :--------------------- | :------------------- |
+| **The District** | **Your Luxury Base**   | **0m**               |
+| Gateway Ekkamai  | Shopping & BTS         | 350m                 |
+| Wattana Panich   | Legendary Beef Noodles | 450m                 |
+| Donki Mall       | 24/7 Japanese Hub      | 900m                 |
+| THAY Ekkamai     | Iconic Thai Nightlife  | 1.2km                |
 
 ---
 

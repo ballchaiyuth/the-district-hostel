@@ -5,7 +5,7 @@ import Image, { ImageProps } from "next/image";
 import { useState } from "react";
 
 interface SafeImageProps extends Omit<ImageProps, "src"> {
-  src: string;
+  src: unknown;
   fallback?: string;
 }
 
@@ -17,20 +17,19 @@ export default function SafeImage({
   ...props
 }: SafeImageProps) {
   const [error, setError] = useState<boolean>(false);
-  const [prevSrc, setPrevSrc] = useState<string>(src);
 
-  // Sync state during render to avoid cascading renders
-  if (src !== prevSrc) {
-    setError(false);
-    setPrevSrc(src);
-  }
+  // Validate source type and error state
+  const validSrc =
+    error || typeof src !== "string" ? fallback : (src as string);
 
   return (
     <div className="relative w-full h-full overflow-hidden">
       <Image
+        // Force re-mount on src change to reset error state
+        key={typeof src === "string" ? src : "empty"}
         fill
         {...props}
-        src={error || !src ? fallback : src}
+        src={validSrc}
         alt={alt}
         className={`object-cover ${className}`}
         onError={() => setError(true)}

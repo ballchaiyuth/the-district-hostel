@@ -10,14 +10,21 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 interface BlogGalleryProps {
-  images: string;
+  images?: string | string[];
 }
 
 export default function BlogGallery({ images }: BlogGalleryProps) {
-  const imageList = images
-    .replace(/\s+/g, "")
-    .split(",")
-    .filter((img) => img.length > 0);
+  // Convert input to a clean string array
+  const imageList = Array.isArray(images)
+    ? images
+    : typeof images === "string"
+      ? images
+          .replace(/\s+/g, "")
+          .split(",")
+          .filter((img) => img.length > 0)
+      : [];
+
+  if (imageList.length === 0) return null;
 
   return (
     <div className="not-prose my-12 blog-gallery group relative">
@@ -54,7 +61,7 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
       </Swiper>
 
       <style jsx global>{`
-        /* Navigation Arrows */
+        /* Navigation Controls */
         .swiper-button-next,
         .swiper-button-prev {
           color: rgba(255, 255, 255, 0.3) !important;
@@ -71,7 +78,7 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
           opacity: 1;
         }
 
-        /* Use our new Brand color (#FECE00) on hover */
+        /* Brand Color (#FECE00) on interaction */
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
           color: var(--color-brand) !important;
@@ -90,7 +97,7 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
           right: 10px !important;
         }
 
-        /* Pagination Bullets */
+        /* Custom Pagination Styling */
         .swiper-pagination-bullet {
           background: white !important;
           opacity: 0.15;
@@ -106,7 +113,7 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
           border-radius: 4px !important;
         }
 
-        /* Clean up for Mobile */
+        /* Mobile Optimization */
         @media (max-width: 768px) {
           .swiper-button-next,
           .swiper-button-prev {

@@ -3,6 +3,7 @@ import SafeImage from "@/components/ui/SafeImage";
 import { getPostBySlug } from "@/lib/markdown";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
+import { ComponentPropsWithoutRef } from "react";
 import remarkGfm from "remark-gfm";
 
 interface PostPageProps {
@@ -13,27 +14,29 @@ interface PostPageProps {
 }
 
 /**
- * Custom MDX Components for branding consistency.
+ * Custom MDX Components with proper type handling to avoid lint errors
  */
 const mdxComponents = {
-  ImageGallery: (props: any) => (
+  ImageGallery: (props: { images?: string | string[] }) => (
     <div className="not-prose">
       <BlogGallery {...props} />
     </div>
   ),
 
-  img: (props: any) => (
+  img: ({ src, alt }: ComponentPropsWithoutRef<"img">) => (
     <div className="not-prose my-12 overflow-hidden rounded-[2rem] shadow-xl border border-white/5">
       <div className="aspect-[16/9] relative">
-        <SafeImage
-          src={props.src}
-          alt={props.alt || "Blog image"}
-          className="object-cover"
-        />
+        {src && (
+          <SafeImage
+            src={src}
+            alt={alt || "Blog image"}
+            className="object-cover"
+          />
+        )}
       </div>
-      {props.alt && (
+      {alt && (
         <p className="mt-4 text-center text-[10px] tracking-[0.3em] text-white/20 uppercase font-medium">
-          {props.alt}
+          {alt}
         </p>
       )}
     </div>
@@ -49,7 +52,7 @@ export default async function PostPage({ params }: PostPageProps) {
   const { frontmatter, content } = post;
 
   return (
-    <article className="min-h-screen bg-black text-white pb-24">
+    <article className="min-h-screen bg-neutral-900 text-white pb-24">
       {/* Hero Section */}
       <div className="relative h-[70vh] w-full">
         <SafeImage
@@ -73,7 +76,7 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </div>
 
-      {/* Main Content Section */}
+      {/* Blog Content with Tailwind Typography */}
       <div className="max-w-3xl mx-auto px-6 mt-20">
         <div
           className="
@@ -88,25 +91,27 @@ export default async function PostPage({ params }: PostPageProps) {
           prose-p:text-neutral-400 prose-p:leading-relaxed prose-p:text-lg
           prose-strong:text-brand prose-strong:font-bold
 
-          /* Special Elements */
+          /* Decorative Elements */
           prose-blockquote:border-l-brand prose-blockquote:bg-white/5 prose-blockquote:py-2 prose-blockquote:rounded-r-2xl
           prose-blockquote:italic prose-blockquote:text-neutral-300
 
-          /* Tables */
+          /* Data Tables */
           prose-table:border-white/10
           prose-th:text-brand prose-th:uppercase prose-th:text-[10px] prose-th:tracking-widest
 
-          /* Lists */
+          /* List Styles */
           prose-li:text-neutral-400
         "
         >
-          <MDXRemote
-            source={content}
-            components={mdxComponents}
-            options={{
-              mdxOptions: { remarkPlugins: [remarkGfm] },
-            }}
-          />
+          {content && (
+            <MDXRemote
+              source={content}
+              components={mdxComponents}
+              options={{
+                mdxOptions: { remarkPlugins: [remarkGfm] },
+              }}
+            />
+          )}
         </div>
       </div>
     </article>
