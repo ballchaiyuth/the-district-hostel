@@ -52,21 +52,21 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop Blur Overlay */}
+          {/* Softer Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-[200] bg-black/50 backdrop-blur-sm"
           />
 
-          {/* Modal Container */}
+          {/* Neutral Toned Modal */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-0 left-0 right-0 z-[201] w-full bg-neutral-800 p-6 text-white lg:bottom-auto lg:left-1/2 lg:top-1/2 lg:max-w-[420px] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-3xl shadow-2xl border border-neutral-700 outline-none"
+            className="fixed bottom-0 left-0 right-0 z-[201] w-full bg-neutral-900 p-6 text-white lg:bottom-auto lg:left-1/2 lg:top-1/2 lg:max-w-[420px] lg:-translate-x-1/2 lg:-translate-y-1/2 lg:rounded-3xl shadow-2xl border border-white/5 outline-none"
             tabIndex={-1}
           >
             <button
@@ -81,20 +81,21 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
               {t("header")}
             </h2>
 
-            {/* Calendar Custom Styling */}
-            <div className="mb-8 flex justify-center bg-neutral-900/40 p-4 rounded-2xl border border-neutral-700/50">
+            {/* Calendar with Neutral Background */}
+            <div className="mb-8 flex justify-center bg-neutral-950/50 p-4 rounded-2xl border border-white/5">
               <style>
                 {`
                   .rdp-root {
-                    --rdp-accent-color: #f59e0b;
-                    --rdp-range_middle-background-color: rgba(245, 158, 11, 0.15);
-                    --rdp-range_middle-color: #f59e0b;
-                    --rdp-range_start-background: #f59e0b;
-                    --rdp-range_end-background: #f59e0b;
+                    --rdp-accent-color: #FECE00;
+                    --rdp-range_middle-background-color: rgba(254, 206, 0, 0.08);
+                    --rdp-range_middle-color: #FECE00;
+                    --rdp-range_start-background: #FECE00;
+                    --rdp-range_end-background: #FECE00;
                   }
                   .rdp-day { color: #a3a3a3; transition: all 0.2s; }
-                  .rdp-day:hover:not([disabled]) { background-color: rgba(245, 158, 11, 0.1) !important; color: #f59e0b !important; }
-                  .rdp-selected { color: white !important; }
+                  .rdp-day:hover:not([disabled]) { background-color: rgba(254, 206, 0, 0.1) !important; color: #FECE00 !important; }
+                  .rdp-selected { color: white !important; font-weight: bold; }
+                  .rdp-chevron { fill: #FECE00 !important; }
                 `}
               </style>
               <DayPicker
@@ -107,13 +108,12 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 classNames={{
                   ...defaultClassNames,
                   root: `${defaultClassNames.root} border-none font-sans`,
-                  chevron: `${defaultClassNames.chevron} fill-brand scale-125`,
                   today: `text-brand font-bold underline underline-offset-4`,
                 }}
               />
             </div>
 
-            {/* Guest Selection UI */}
+            {/* Guest Selection with Neutral Accents */}
             <div className="mb-8">
               <label className="mb-3 block text-[10px] font-bold uppercase tracking-widest text-neutral-500">
                 {t("guestsLabel")}
@@ -125,17 +125,17 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     onClick={() => setGuests(option)}
                     className={`flex items-center justify-center gap-3 rounded-xl border py-4 transition-all duration-300 cursor-pointer ${
                       guests === option
-                        ? "border-brand bg-brand/10 text-brand"
-                        : "border-neutral-700 bg-neutral-900/30 text-neutral-400 hover:border-neutral-500"
+                        ? "border-brand bg-brand/5 text-brand"
+                        : "border-white/5 bg-neutral-950/40 text-neutral-400 hover:border-neutral-700"
                     }`}
                   >
                     <span className="text-sm font-bold">{option}</span>
                     <div className="w-4 h-4 overflow-hidden rounded-[2px]">
                       <SafeImage
                         src="/icons/ui/users.svg"
-                        alt="Users icon"
+                        alt="Users"
                         className={`transition-colors duration-300 ${
-                          guests === option ? "bg-brand" : "bg-neutral-400"
+                          guests === option ? "bg-brand" : "bg-neutral-600"
                         }`}
                         unoptimized
                       />
@@ -150,10 +150,10 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
               <button
                 disabled={!range?.from || !range?.to}
                 onClick={handleCheck}
-                className={`w-full py-5 text-[11px] font-black uppercase tracking-[0.3em] text-white shadow-lg transition-all active:scale-[0.98] rounded-2xl cursor-pointer ${
+                className={`w-full py-5 text-[11px] font-black uppercase tracking-[0.3em] shadow-lg transition-all active:scale-[0.98] rounded-2xl cursor-pointer ${
                   !range?.from || !range?.to
-                    ? "bg-neutral-700 opacity-50 cursor-not-allowed"
-                    : "bg-brand hover:bg-amber-600"
+                    ? "bg-neutral-800 text-neutral-500 opacity-50 cursor-not-allowed"
+                    : "bg-brand text-neutral-600 hover:brightness-110"
                 }`}
               >
                 {!range?.from || !range?.to ? t("selectDates") : t("confirm")}
