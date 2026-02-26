@@ -51,10 +51,19 @@ const Header = () => {
               </div>
             </button>
 
-            <Link href="/" className="group">
-              <h1 className="text-brand group-hover:text-brand-light text-xl md:text-2xl font-black tracking-tighter truncate uppercase transition-colors duration-300 italic">
+            <Link
+              href="/"
+              className="group flex flex-col md:flex-row md:items-baseline md:gap-3"
+            >
+              {/* Main Brand with Neon Glow Effect */}
+              <h1 className="text-brand text-xl md:text-2xl font-black tracking-tighter uppercase italic transition-all duration-500 group-hover:text-brand-light group-hover:drop-shadow-[0_0_12px_rgba(254,206,0,0.5)]">
                 THE DISTRICT
               </h1>
+
+              {/* Subtle Identity: Minimalist yet Informative */}
+              <span className="text-[7px] md:text-[9px] font-bold tracking-[0.4em] uppercase text-white/30 transition-all duration-700 group-hover:text-brand group-hover:tracking-[0.6em] group-hover:opacity-100">
+                Hotel & Hostel
+              </span>
             </Link>
           </div>
 

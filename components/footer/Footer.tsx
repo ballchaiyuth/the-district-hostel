@@ -116,7 +116,7 @@ const Footer = () => {
               />
             </div>
             <p className="text-[8px] tracking-[0.4em] uppercase font-bold text-white/40 text-center">
-              {t("brandName")} Hotel
+              {t("brandName")} Hostel
             </p>
           </div>
 

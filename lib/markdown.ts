@@ -5,9 +5,30 @@ import path from "path";
 const contentDirectory = path.join(process.cwd(), "public/content/blog");
 
 /**
+ * Define the structure of our Blog Frontmatter
+ */
+export interface BlogFrontmatter {
+  title?: string;
+  date?: string;
+  category?: string;
+  excerpt?: string;
+  coverImage?: string;
+  [key: string]: unknown; // Allow for other fields without using 'any'
+}
+
+export interface BlogPost {
+  slug: string;
+  frontmatter: BlogFrontmatter;
+  content?: string;
+}
+
+/**
  * Get a single post by slug and locale
  */
-export async function getPostBySlug(slug: string, locale: string) {
+export async function getPostBySlug(
+  slug: string,
+  locale: string,
+): Promise<BlogPost | null> {
   const fullPath = path.join(contentDirectory, slug, `index.${locale}.md`);
 
   if (!fs.existsSync(fullPath)) {
@@ -21,7 +42,7 @@ export async function getPostBySlug(slug: string, locale: string) {
 
   return {
     slug,
-    frontmatter: data,
+    frontmatter: data as BlogFrontmatter,
     content, // Passed as raw string to MDXRemote
   };
 }
@@ -29,14 +50,13 @@ export async function getPostBySlug(slug: string, locale: string) {
 /**
  * Get all posts for a specific locale (for Listing Page)
  */
-export async function getAllPosts(locale: string) {
+export async function getAllPosts(locale: string): Promise<BlogPost[]> {
   if (!fs.existsSync(contentDirectory)) return [];
 
   const folders = fs.readdirSync(contentDirectory);
 
   const posts = await Promise.all(
     folders.map(async (folder) => {
-      // Ensure it's a directory (ignore system files like .DS_Store)
       const folderPath = path.join(contentDirectory, folder);
       if (!fs.statSync(folderPath).isDirectory()) return null;
 
@@ -50,9 +70,8 @@ export async function getAllPosts(locale: string) {
     }),
   );
 
-  // Filter nulls and sort by date descending
   return posts
-    .filter((post): post is { slug: string; frontmatter: any } => post !== null)
+    .filter((post): post is BlogPost => post !== null)
     .sort((a, b) => {
       const dateA = new Date(a.frontmatter.date as string).getTime();
       const dateB = new Date(b.frontmatter.date as string).getTime();
