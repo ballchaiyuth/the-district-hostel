@@ -53,17 +53,17 @@ export default function GalleryPage() {
   return (
     <main className="bg-neutral-950 text-white min-h-screen">
       {/* Hero Header */}
-      <div className="py-24 text-center bg-black border-b border-white/5">
+      <div className="pt-24 pb-8 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
           <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white">
             {t("header")}
           </h1>
-          <div className="mx-auto mt-8 h-[1px] w-24 bg-orange-500"></div>
+          <div className="mx-auto mt-8 h-[1px] w-24 bg-brand"></div>
         </div>
       </div>
 
       {/* Mosaic Grid Section */}
-      <section className="bg-neutral-900 py-20 border-b border-white/5">
+      <section className="bg-neutral-900 py-12 border-b border-white/5">
         <div className={containerClass}>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:auto-rows-[400px]">
             {/* Pool Area - Main Feature */}
@@ -130,7 +130,7 @@ export default function GalleryPage() {
             </div>
           </div>
 
-          <div className="mt-16 text-center">
+          <div className="mt-12 text-center">
             <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/30">
               {t("curated")}
             </p>

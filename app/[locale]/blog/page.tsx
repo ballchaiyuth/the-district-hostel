@@ -15,19 +15,19 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const blogs = await getAllPosts(locale);
 
   return (
-    <main className="bg-neutral-950 text-white min-h-screen">
+    <main className="bg-neutral-950 text-white min-h-screen flex flex-col">
       {/* Page Header */}
-      <div className="py-24 text-center bg-black border-b border-white/5">
+      <div className="pt-24 pb-8 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
-          <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white">
+          <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white leading-tight">
             {t("header")}
           </h1>
-          <div className="mx-auto mt-8 h-[1px] w-24 bg-orange-500"></div>
+          <div className="mx-auto mt-8 h-[1px] w-24 bg-brand"></div>
         </div>
       </div>
 
-      {/* Blog Grid */}
-      <section className="bg-neutral-900 py-20 border-b border-white/5">
+      {/* Blog Grid - flex-grow handles empty space if post count is low */}
+      <section className="bg-neutral-900 py-12 border-b border-white/5 flex-grow">
         <div className={containerClass}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
             {blogs.map((blog, index) => {
@@ -39,7 +39,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
                   key={blog.slug}
                   className="group flex flex-col space-y-6"
                 >
-                  {/* Visual Section */}
+                  {/* Visual Container */}
                   <div className="w-full overflow-hidden shadow-2xl bg-neutral-900 rounded-sm">
                     <Link
                       href={`/blog/${blog.slug}`}
@@ -56,16 +56,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
                     </Link>
                   </div>
 
-                  {/* Info Section */}
+                  {/* Content Container */}
                   <div className="space-y-4">
-                    <div className="flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-orange-500 uppercase">
+                    <div className="flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-brand uppercase">
                       <span>{(category as string) || "JOURNAL"}</span>
                       <span className="w-8 h-[1px] bg-white/20"></span>
                       <span className="text-white/40">{date as string}</span>
                     </div>
 
                     <Link href={`/blog/${blog.slug}`}>
-                      <h2 className="text-2xl font-light tracking-wide text-white uppercase leading-tight hover:text-orange-400 transition-colors min-h-[3.5rem]">
+                      <h2 className="text-2xl font-light tracking-wide text-white uppercase leading-tight hover:text-brand-light transition-colors min-h-[3.5rem]">
                         {title as string}
                       </h2>
                     </Link>
@@ -78,10 +78,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
                       href={`/blog/${blog.slug}`}
                       className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase pt-2"
                     >
-                      <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
+                      <span className="border-b border-white/20 pb-1 group-hover:border-brand transition-colors">
                         {t("readMore")}
                       </span>
-                      <span className="text-orange-500 group-hover:translate-x-2 transition-transform">
+                      <span className="text-brand group-hover:translate-x-2 transition-transform">
                         →
                       </span>
                     </Link>
@@ -93,8 +93,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
         </div>
       </section>
 
-      {/* Footer Branding */}
-      <div className="py-20 bg-neutral-950 border-t border-white/5">
+      {/* Footer Branding - Always pushed to the bottom */}
+      <div className="py-12 bg-neutral-950 border-t border-white/5">
         <div className={`${containerClass} text-center`}>
           <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/30">
             {t("footerBranding")}

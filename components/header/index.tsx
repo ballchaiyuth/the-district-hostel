@@ -13,6 +13,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
+  // Bold navigation links with slightly tighter tracking for a premium feel
   const navLinks = [
     { href: "/story", label: t("story") },
     { href: "/offers", label: t("offers") },
@@ -22,9 +23,10 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full bg-black/80 backdrop-blur-md">
-        <div className="relative z-10 flex items-center justify-between py-4 px-6 border-b border-white/10">
-          {/* Left: Menu & Brand */}
+      {/* Fixed Header with Glassmorphism overlaying the content */}
+      <header className="fixed top-0 z-50 w-full bg-black/75 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div className="relative z-10 flex items-center justify-between py-4 px-6">
+          {/* Brand & Menu */}
           <div className="flex items-center gap-4 md:gap-6">
             <button
               onClick={() => setIsMenuOpen(true)}
@@ -39,30 +41,31 @@ const Header = () => {
                   unoptimized
                 />
               </div>
-              {/* Menu Icon: Orange (Hover) */}
+              {/* Menu Icon: Brand Color (Hover) */}
               <div className="absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                 <SafeImage
-                  src="/icons/ui/menu-orange.svg"
+                  src="/icons/ui/menu-yellow.svg"
                   alt="Menu icon active"
                   unoptimized
                 />
               </div>
             </button>
-            <Link href="/">
-              <h1 className="text-white text-xl md:text-2xl font-extrabold tracking-tighter truncate uppercase">
+
+            <Link href="/" className="group">
+              <h1 className="text-brand group-hover:text-brand-light text-xl md:text-2xl font-black tracking-tighter truncate uppercase transition-colors duration-300 italic">
                 THE DISTRICT
               </h1>
             </Link>
           </div>
 
-          {/* Right: Navigation & Actions */}
+          {/* Navigation & CTAs */}
           <div className="flex items-center gap-4 lg:gap-8">
             <nav className="hidden lg:flex gap-8 text-white text-sm tracking-[0.2em] uppercase">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="hover:text-orange-400 transition-colors"
+                  className="font-bold hover:text-brand transition-colors duration-300"
                 >
                   {link.label}
                 </Link>
@@ -74,7 +77,7 @@ const Header = () => {
 
               <button
                 onClick={() => setIsBookingOpen(true)}
-                className="hidden sm:block border border-white text-white px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-colors duration-300 cursor-pointer"
+                className="hidden sm:block border border-white text-white px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-brand hover:border-brand hover:text-black transition-all duration-300 cursor-pointer"
               >
                 {t("checkAvailability")}
               </button>
@@ -83,7 +86,6 @@ const Header = () => {
         </div>
       </header>
 
-      {/* Overlays & Modals */}
       <MenuOverlay
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}

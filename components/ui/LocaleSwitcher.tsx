@@ -101,8 +101,8 @@ export default function LocaleSwitcher() {
               <span
                 className={`text-[10px] font-bold tracking-[0.2em] transition-colors ${
                   locale === lang.code
-                    ? "text-orange-400"
-                    : "text-white group-hover:text-orange-400"
+                    ? "text-brand-light"
+                    : "text-white group-hover:text-brand-light"
                 }`}
               >
                 {lang.label}

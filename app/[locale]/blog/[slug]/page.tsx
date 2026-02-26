@@ -13,18 +13,15 @@ interface PostPageProps {
 }
 
 /**
- * Custom MDX Components
- * We override standard elements to ensure design consistency and safety.
+ * Custom MDX Components for branding consistency.
  */
 const mdxComponents = {
-  // Use our custom gallery component
   ImageGallery: (props: any) => (
     <div className="not-prose">
       <BlogGallery {...props} />
     </div>
   ),
 
-  // Override standard Markdown image ![alt](src)
   img: (props: any) => (
     <div className="not-prose my-12 overflow-hidden rounded-[2rem] shadow-xl border border-white/5">
       <div className="aspect-[16/9] relative">
@@ -35,7 +32,7 @@ const mdxComponents = {
         />
       </div>
       {props.alt && (
-        <p className="mt-4 text-center text-xs tracking-[0.2em] text-white/30 uppercase">
+        <p className="mt-4 text-center text-[10px] tracking-[0.3em] text-white/20 uppercase font-medium">
           {props.alt}
         </p>
       )}
@@ -66,7 +63,7 @@ export default async function PostPage({ params }: PostPageProps) {
 
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-20 max-w-7xl mx-auto">
           <div className="max-w-4xl">
-            <p className="text-orange-500 text-[10px] font-bold uppercase tracking-[0.5em] mb-6">
+            <p className="text-brand text-[10px] font-bold uppercase tracking-[0.5em] mb-6">
               {frontmatter.date as string}
             </p>
             <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-white italic">
@@ -80,15 +77,26 @@ export default async function PostPage({ params }: PostPageProps) {
       <div className="max-w-3xl mx-auto px-6 mt-20">
         <div
           className="
-          prose prose-invert prose-orange 
+          prose prose-invert prose-white 
           max-w-none
-          prose-h2:text-3xl prose-h2:tracking-widest prose-h2:uppercase prose-h2:font-bold prose-h2:mt-20
-          prose-h3:text-xl prose-h3:tracking-wider prose-h3:uppercase prose-h3:mt-12
+
+          /* Headings */
+          prose-h2:text-white prose-h2:text-3xl prose-h2:tracking-[0.2em] prose-h2:uppercase prose-h2:font-bold prose-h2:mt-24
+          prose-h3:text-white prose-h3:text-xl prose-h3:tracking-wider prose-h3:uppercase prose-h3:mt-16
+
+          /* Body Text */
           prose-p:text-neutral-400 prose-p:leading-relaxed prose-p:text-lg
-          prose-strong:text-orange-500
-          prose-blockquote:border-l-orange-500 prose-blockquote:bg-white/5 prose-blockquote:py-4 prose-blockquote:rounded-r-2xl
+          prose-strong:text-brand prose-strong:font-bold
+
+          /* Special Elements */
+          prose-blockquote:border-l-brand prose-blockquote:bg-white/5 prose-blockquote:py-2 prose-blockquote:rounded-r-2xl
+          prose-blockquote:italic prose-blockquote:text-neutral-300
+
+          /* Tables */
           prose-table:border-white/10
-          prose-th:text-orange-500 prose-th:uppercase prose-th:text-xs
+          prose-th:text-brand prose-th:uppercase prose-th:text-[10px] prose-th:tracking-widest
+
+          /* Lists */
           prose-li:text-neutral-400
         "
         >
