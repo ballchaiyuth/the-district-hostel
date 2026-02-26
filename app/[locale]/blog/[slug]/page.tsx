@@ -14,30 +14,79 @@ interface PostPageProps {
 }
 
 /**
- * Custom MDX Components with proper type handling to avoid lint errors
+ * Custom MDX Components with synchronized branding and layout
  */
 const mdxComponents = {
-  ImageGallery: (props: { images?: string | string[] }) => (
-    <div className="not-prose">
-      <BlogGallery {...props} />
+  // Gallery Component
+  ImageGallery: (props: { images?: string | string[]; caption?: string }) => (
+    <div className="not-prose my-16 group">
+      <BlogGallery images={props.images} />
+      {/* Dynamic Caption: Only renders if caption exists */}
+      {props.caption && (
+        <div className="mt-6 flex justify-center px-4">
+          <div className="flex items-center gap-4">
+            <div className="h-[1px] w-8 bg-brand/30" />
+            <p className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/40">
+              {props.caption}
+            </p>
+            <div className="h-[1px] w-8 bg-brand/30" />
+          </div>
+        </div>
+      )}
     </div>
   ),
 
-  img: ({ src, alt }: ComponentPropsWithoutRef<"img">) => (
-    <div className="not-prose my-12 overflow-hidden rounded-[2rem] shadow-xl border border-white/5">
-      <div className="aspect-[16/9] relative">
-        {src && (
+  // Optimized Single Image Component
+  // In Markdown, you can use: <SingleImage src="..." caption="..." />
+  // Or standard: ![caption](src) -> This will still work as fallback
+  SingleImage: (props: { src: string; alt?: string; caption?: string }) => (
+    <div className="not-prose my-16 group">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl">
+        <SafeImage
+          src={props.src}
+          alt={props.caption || props.alt || "The District Blog Image"}
+          className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+        />
+      </div>
+
+      {/* Synchronized Caption: Zero height if empty */}
+      {props.caption && (
+        <div className="mt-6 flex justify-center px-4">
+          <div className="flex items-center gap-4">
+            <div className="h-[1px] w-8 bg-brand/30" />
+            <p className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/40">
+              {props.caption}
+            </p>
+            <div className="h-[1px] w-8 bg-brand/30" />
+          </div>
+        </div>
+      )}
+    </div>
+  ),
+
+  // Fallback for standard Markdown images ![alt](src)
+  img: (props: ComponentPropsWithoutRef<"img">) => (
+    <div className="not-prose my-16 group">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl">
+        {props.src && (
           <SafeImage
-            src={src}
-            alt={alt || "Blog image"}
-            className="object-cover"
+            src={props.src}
+            alt={props.alt || ""}
+            className="object-cover transition-transform duration-[2s] group-hover:scale-105"
           />
         )}
       </div>
-      {alt && (
-        <p className="mt-4 text-center text-[10px] tracking-[0.3em] text-white/20 uppercase font-medium">
-          {alt}
-        </p>
+      {/* Standard markdown uses alt as caption for convenience */}
+      {props.alt && (
+        <div className="mt-6 flex justify-center px-4">
+          <div className="flex items-center gap-4">
+            <div className="h-[1px] w-8 bg-brand/30" />
+            <p className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/40">
+              {props.alt}
+            </p>
+            <div className="h-[1px] w-8 bg-brand/30" />
+          </div>
+        </div>
       )}
     </div>
   ),
@@ -52,8 +101,8 @@ export default async function PostPage({ params }: PostPageProps) {
   const { frontmatter, content } = post;
 
   return (
-    <article className="min-h-screen bg-neutral-900 text-white pb-24">
-      {/* Hero Section */}
+    <article className="min-h-screen bg-neutral-950 text-white pb-24">
+      {/* Article Hero */}
       <div className="relative h-[70vh] w-full">
         <SafeImage
           src={
@@ -76,30 +125,26 @@ export default async function PostPage({ params }: PostPageProps) {
         </div>
       </div>
 
-      {/* Blog Content with Tailwind Typography */}
+      {/* Article Body */}
       <div className="max-w-3xl mx-auto px-6 mt-20">
         <div
           className="
           prose prose-invert prose-white 
           max-w-none
 
-          /* Headings */
+          /* Hierarchy & Typography */
           prose-h2:text-white prose-h2:text-3xl prose-h2:tracking-[0.2em] prose-h2:uppercase prose-h2:font-bold prose-h2:mt-24
           prose-h3:text-white prose-h3:text-xl prose-h3:tracking-wider prose-h3:uppercase prose-h3:mt-16
-
-          /* Body Text */
           prose-p:text-neutral-400 prose-p:leading-relaxed prose-p:text-lg
           prose-strong:text-brand prose-strong:font-bold
 
-          /* Decorative Elements */
+          /* Block Elements */
           prose-blockquote:border-l-brand prose-blockquote:bg-white/5 prose-blockquote:py-2 prose-blockquote:rounded-r-2xl
           prose-blockquote:italic prose-blockquote:text-neutral-300
 
-          /* Data Tables */
+          /* Table & List Aesthetics */
           prose-table:border-white/10
           prose-th:text-brand prose-th:uppercase prose-th:text-[10px] prose-th:tracking-widest
-
-          /* List Styles */
           prose-li:text-neutral-400
         "
         >

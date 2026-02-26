@@ -22,7 +22,10 @@ Whether you are looking for local crafts or world-class retail therapy, Ekkamai 
 - **Donki Mall Thonglor-Ekkamai**: A 24-hour Japanese wonderland. Whether you crave late-night sushi or unique Japanese imports, Donki is an experience in itself.
 - **The Commons (Thonglor-Ekkamai)**: Just a short hop away, this vertical open-air courtyard is where the city’s creative crowd gathers for artisanal coffee and communal dining.
 
-![Ekkamai Cafe Life](/content/blog/001-hello-ekkamai/001-cafe-vibes.jpg)
+<SingleImage 
+  src="/content/blog/001-hello-ekkamai/001-cafe-vibes.jpg" 
+  caption="Sun-drenched cafe vibes in the heart of Ekkamai" 
+/>
 
 ### Gastronomy & Nightlife: From Dusk Till Dawn
 
@@ -52,12 +55,15 @@ Ekkamai is world-renowned for its dining scene. You can literally taste the hist
 
 From century-old recipes to world-class shopping and cozy hideaways, here is a visual journey through our beloved neighborhood.
 
-<ImageGallery images="
-  /content/blog/001-hello-ekkamai/001-wattana-panich.jpg,
-  /content/blog/001-hello-ekkamai/001-gateway-mall.jpg,
-  /content/blog/001-hello-ekkamai/001-donki-mall.jpg,
-  /content/blog/001-hello-ekkamai/001-thay-nightlife.jpg,
-  /content/blog/001-hello-ekkamai/001-hidden-cafe.jpg
-" />
+<ImageGallery 
+  images="
+    /content/blog/001-hello-ekkamai/001-wattana-panich.jpg,
+    /content/blog/001-hello-ekkamai/001-gateway-mall.jpg,
+    /content/blog/001-hello-ekkamai/001-donki-mall.jpg,
+    /content/blog/001-hello-ekkamai/001-thay-nightlife.jpg,
+    /content/blog/001-hello-ekkamai/001-hidden-cafe.jpg
+  " 
+  caption="A curated selection of Ekkamai's iconic landmarks"
+/>
 
 _Ready to explore? Our concierge is always available to provide personalized recommendations for your Ekkamai journey._

@@ -14,7 +14,7 @@ interface BlogGalleryProps {
 }
 
 export default function BlogGallery({ images }: BlogGalleryProps) {
-  // Convert input to a clean string array
+  // Parse input to string array
   const imageList = Array.isArray(images)
     ? images
     : typeof images === "string"
@@ -27,7 +27,7 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
   if (imageList.length === 0) return null;
 
   return (
-    <div className="not-prose my-12 blog-gallery group relative">
+    <div className="not-prose blog-gallery group relative">
       <Swiper
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
         slidesPerView={1}
@@ -78,7 +78,7 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
           opacity: 1;
         }
 
-        /* Brand Color (#FECE00) on interaction */
+        /* Brand Accent Color (#FECE00) */
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
           color: var(--color-brand) !important;
@@ -97,7 +97,7 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
           right: 10px !important;
         }
 
-        /* Custom Pagination Styling */
+        /* Pagination Dots Styling */
         .swiper-pagination-bullet {
           background: white !important;
           opacity: 0.15;
