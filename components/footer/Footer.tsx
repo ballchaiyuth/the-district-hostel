@@ -56,24 +56,25 @@ const Footer = () => {
             <nav className="flex flex-col space-y-3 text-xs font-bold tracking-widest uppercase">
               <Link
                 href="/go-green"
-                className="hover:text-amber-500 transition-colors"
+                className="hover:text-brand transition-colors"
               >
                 {nav("goGreen")}
               </Link>
               <Link
                 href="/privacy"
-                className="hover:text-amber-500 transition-colors"
+                className="hover:text-brand transition-colors"
               >
                 {nav("privacy")}
               </Link>
               <Link
                 href="/contact"
-                className="hover:text-amber-500 transition-colors"
+                className="hover:text-brand transition-colors"
               >
                 {nav("contact")}
               </Link>
             </nav>
 
+            {/* Social Icons with Brand Hover */}
             <div className="space-y-3">
               <p className="text-[10px] font-bold tracking-widest uppercase opacity-50">
                 Follow Us
@@ -85,16 +86,21 @@ const Footer = () => {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="opacity-60 hover:opacity-100 transition-opacity"
+                    className="group transition-all duration-300"
                   >
-                    <div className="w-5 h-5 overflow-hidden">
-                      <SafeImage
-                        src={item.icon}
-                        alt={item.name}
-                        className="invert"
-                        unoptimized
-                      />
-                    </div>
+                    <div
+                      className="w-5 h-5 bg-white opacity-60 group-hover:bg-brand group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+                      style={{
+                        maskImage: `url(${item.icon})`,
+                        maskRepeat: "no-repeat",
+                        maskPosition: "center",
+                        maskSize: "contain",
+                        WebkitMaskImage: `url(${item.icon})`,
+                        WebkitMaskRepeat: "no-repeat",
+                        WebkitMaskPosition: "center",
+                        WebkitMaskSize: "contain",
+                      }}
+                    />
                   </a>
                 ))}
               </div>
@@ -109,7 +115,7 @@ const Footer = () => {
                 alt="The District Logo"
               />
             </div>
-            <p className="text-[8px] tracking-[0.4em] uppercase font-light text-white/40 text-center">
+            <p className="text-[8px] tracking-[0.4em] uppercase font-bold text-white/40 text-center">
               {t("brandName")} Hotel
             </p>
           </div>
@@ -120,8 +126,8 @@ const Footer = () => {
               <p className="font-bold text-white uppercase tracking-widest">
                 {t("reservations")}
               </p>
-              <p className="text-[10px]">099-999-9999</p>
-              <p className="text-[10px] underline decoration-amber-500/20">
+              <p className="text-[10px] font-bold">099-999-9999</p>
+              <p className="text-[10px] underline decoration-brand/40 hover:text-brand transition-colors">
                 stay@thedistrict.com
               </p>
             </div>
@@ -130,7 +136,7 @@ const Footer = () => {
               <p className="font-bold text-white uppercase tracking-widest">
                 {t("inquiries")}
               </p>
-              <p className="text-[10px]">hello@thedistrict.com</p>
+              <p className="text-[10px] font-bold">hello@thedistrict.com</p>
             </div>
           </div>
         </div>
@@ -140,7 +146,7 @@ const Footer = () => {
           <p className="text-[10px] text-center text-white/40 tracking-wide font-light italic max-w-2xl mx-auto">
             📍 {t("address")}
           </p>
-          <p className="text-[8px] text-white/30 uppercase tracking-[0.3em]">
+          <p className="text-[8px] text-white/30 uppercase tracking-[0.3em] font-bold">
             Copyright © 2026 THE DISTRICT. All Rights Reserved.
           </p>
         </div>

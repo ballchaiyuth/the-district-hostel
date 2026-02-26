@@ -17,7 +17,7 @@ export default function FacilitiesPage() {
         <h1 className="text-4xl md:text-6xl font-light tracking-[0.5em] uppercase opacity-40">
           {t("header")}
         </h1>
-        <div className="w-12 h-px bg-amber-500/30 mx-auto" />
+        <div className="w-12 h-px bg-brand/30 mx-auto" />
         <p className="text-[10px] tracking-[0.3em] text-neutral-500 uppercase">
           {t("status")}
         </p>

@@ -8,19 +8,20 @@ export default function OffersPage() {
   return (
     <main className="bg-neutral-950 text-white min-h-screen">
       {/* Page Header */}
-      <div className="py-24 text-center bg-black border-b border-white/5">
+      <div className="pt-24 pb-8 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
-          <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white">
+          <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white leading-tight">
             {t("header")}
           </h1>
-          <div className="mx-auto mt-8 h-[1px] w-24 bg-orange-500"></div>
+          {/* Brand accent line */}
+          <div className="mx-auto mt-8 h-[1px] w-24 bg-brand"></div>
         </div>
       </div>
 
       {/* Offer Section 1: Stay */}
-      <section className="bg-neutral-900 py-20 border-b border-white/5">
+      <section className="bg-neutral-900 py-8 border-b border-white/5">
         <div
-          className={`${containerClass} flex flex-col md:flex-row gap-16 items-center`}
+          className={`${containerClass} flex flex-col md:flex-row gap-8 items-center`}
         >
           <div className="w-full md:w-1/2">
             <div className="relative aspect-[4/3] w-full bg-neutral-900 overflow-hidden shadow-2xl cursor-pointer group">
@@ -33,7 +34,7 @@ export default function OffersPage() {
             </div>
           </div>
           <div className="w-full md:w-1/2 space-y-8">
-            <span className="text-orange-500 text-xs font-bold tracking-[0.4em] uppercase">
+            <span className="text-brand text-xs font-bold tracking-[0.4em] uppercase">
               — {t("stay.tag")}
             </span>
             <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1] whitespace-pre-line">
@@ -43,10 +44,10 @@ export default function OffersPage() {
               {t("stay.desc")}
             </p>
             <button className="group flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase cursor-pointer">
-              <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
+              <span className="border-b border-white/20 pb-1 group-hover:border-brand transition-colors">
                 {t("stay.cta")}
               </span>
-              <span className="text-orange-500 group-hover:translate-x-2 transition-transform">
+              <span className="text-brand group-hover:translate-x-2 transition-transform">
                 →
               </span>
             </button>
@@ -55,9 +56,9 @@ export default function OffersPage() {
       </section>
 
       {/* Offer Section 2: Experience */}
-      <section className="bg-black py-24 border-b border-white/5">
+      <section className="bg-black py-8 border-b border-white/5">
         <div
-          className={`${containerClass} flex flex-col md:flex-row-reverse gap-16 items-center`}
+          className={`${containerClass} flex flex-col md:flex-row-reverse gap-8 items-center`}
         >
           <div className="w-full md:w-1/2">
             <div className="relative aspect-[4/3] w-full bg-neutral-900 overflow-hidden shadow-2xl cursor-pointer group">
@@ -69,7 +70,7 @@ export default function OffersPage() {
             </div>
           </div>
           <div className="w-full md:w-1/2 space-y-8">
-            <span className="text-orange-500 text-xs font-bold tracking-[0.4em] uppercase">
+            <span className="text-brand text-xs font-bold tracking-[0.4em] uppercase">
               — {t("experience.tag")}
             </span>
             <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1] whitespace-pre-line">
@@ -79,10 +80,10 @@ export default function OffersPage() {
               {t("experience.desc")}
             </p>
             <button className="group flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase cursor-pointer">
-              <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
+              <span className="border-b border-white/20 pb-1 group-hover:border-brand transition-colors">
                 {t("experience.cta")}
               </span>
-              <span className="text-orange-500 group-hover:translate-x-2 transition-transform">
+              <span className="text-brand group-hover:translate-x-2 transition-transform">
                 →
               </span>
             </button>
@@ -91,9 +92,9 @@ export default function OffersPage() {
       </section>
 
       {/* Offer Section 3: Dining */}
-      <section className="bg-neutral-900 py-24">
+      <section className="bg-neutral-900 py-8">
         <div
-          className={`${containerClass} flex flex-col md:flex-row gap-16 items-center`}
+          className={`${containerClass} flex flex-col md:flex-row gap-8 items-center`}
         >
           <div className="w-full md:w-1/2">
             <div className="relative aspect-[4/3] w-full bg-neutral-900 overflow-hidden shadow-2xl cursor-pointer group">
@@ -105,7 +106,7 @@ export default function OffersPage() {
             </div>
           </div>
           <div className="w-full md:w-1/2 space-y-8">
-            <span className="text-orange-500 text-xs font-bold tracking-[0.4em] uppercase">
+            <span className="text-brand text-xs font-bold tracking-[0.4em] uppercase">
               — {t("dining.tag")}
             </span>
             <h2 className="text-3xl md:text-5xl font-light tracking-tight text-white uppercase leading-[1.1] whitespace-pre-line">
@@ -115,10 +116,10 @@ export default function OffersPage() {
               {t("dining.desc")}
             </p>
             <button className="group flex items-center gap-4 text-[10px] font-bold tracking-[0.3em] uppercase cursor-pointer">
-              <span className="border-b border-white/20 pb-1 group-hover:border-orange-500 transition-colors">
+              <span className="border-b border-white/20 pb-1 group-hover:border-brand transition-colors">
                 {t("dining.cta")}
               </span>
-              <span className="text-orange-500 group-hover:translate-x-2 transition-transform">
+              <span className="text-brand group-hover:translate-x-2 transition-transform">
                 →
               </span>
             </button>

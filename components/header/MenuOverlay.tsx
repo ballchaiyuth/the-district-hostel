@@ -53,7 +53,8 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
     { label: t("contact"), href: "/contact" },
   ];
 
-  const menuLinkStyle = `w-full py-3 text-center text-base font-light tracking-[0.25em] text-white/80 hover:text-orange-400 uppercase transition-[opacity,transform] duration-400`;
+  // Updated to font-bold for premium consistency
+  const menuLinkStyle = `w-full py-3 text-center text-base font-bold tracking-[0.25em] text-white/80 hover:text-brand uppercase transition-[opacity,transform] duration-400`;
 
   return (
     <div
@@ -62,11 +63,11 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className={`relative flex w-full flex-col bg-neutral-900/90 text-white shadow-2xl transition-all duration-400 ease-out h-full lg:h-auto lg:max-w-lg lg:border lg:border-white/5 lg:rounded-2xl ${animate ? "translate-y-0 scale-100 opacity-100" : "translate-y-4 scale-[0.98] opacity-0"}`}
+        className={`relative flex w-full flex-col bg-neutral-900/95 text-white shadow-2xl transition-all duration-400 ease-out h-full lg:h-auto lg:max-w-lg lg:border lg:border-white/5 lg:rounded-2xl ${animate ? "translate-y-0 scale-100 opacity-100" : "translate-y-4 scale-[0.98] opacity-0"}`}
       >
         <button
           onClick={onClose}
-          className="fixed right-6 top-6 z-[120] text-3xl font-light text-white/40 hover:text-orange-400 hover:rotate-90 lg:absolute cursor-pointer"
+          className="fixed right-6 top-6 z-[120] text-3xl font-light text-white/40 hover:text-brand hover:rotate-90 lg:absolute cursor-pointer transition-all"
         >
           ✕
         </button>
@@ -120,7 +121,7 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
           >
             <button
               onClick={onBookingClick}
-              className="w-full max-w-[240px] border border-white/20 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:bg-white hover:text-black cursor-pointer"
+              className="w-full max-w-[240px] border border-white/20 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:bg-brand hover:border-brand hover:text-black cursor-pointer transition-all duration-300"
             >
               {t("checkAvailability")}
             </button>

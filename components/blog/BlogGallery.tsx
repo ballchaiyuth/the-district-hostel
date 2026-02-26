@@ -39,10 +39,12 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
             <div className="relative w-full h-full">
               <SafeImage
                 src={src}
-                alt="Gallery image"
+                alt={`Gallery image ${index + 1}`}
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+              {/* Counter Indicator */}
               <div className="absolute top-6 right-8 text-white/20 text-[10px] font-medium tracking-[0.4em]">
                 {index + 1} / {imageList.length}
               </div>
@@ -56,13 +58,12 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
         .swiper-button-next,
         .swiper-button-prev {
           color: rgba(255, 255, 255, 0.3) !important;
-          background: none !important;
           width: 50px !important;
           height: 100% !important;
           top: 0 !important;
           margin-top: 0 !important;
           opacity: 0;
-          transition: all 0.4s ease;
+          transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .blog-gallery:hover .swiper-button-next,
@@ -70,15 +71,16 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
           opacity: 1;
         }
 
+        /* Use our new Brand color (#FECE00) on hover */
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
-          color: #f59e0b !important;
+          color: var(--color-brand) !important;
         }
 
         .swiper-button-next:after,
         .swiper-button-prev:after {
-          font-size: 16px !important;
-          font-weight: 200;
+          font-size: 14px !important;
+          font-weight: bold;
         }
 
         .swiper-button-prev {
@@ -91,18 +93,20 @@ export default function BlogGallery({ images }: BlogGalleryProps) {
         /* Pagination Bullets */
         .swiper-pagination-bullet {
           background: white !important;
-          opacity: 0.2;
-          width: 5px !important;
-          height: 5px !important;
+          opacity: 0.15;
+          width: 4px !important;
+          height: 4px !important;
+          transition: all 0.3s ease;
         }
 
         .swiper-pagination-bullet-active {
-          background: #f59e0b !important;
+          background: var(--color-brand) !important;
           opacity: 1;
-          width: 15px !important;
-          border-radius: 3px !important;
+          width: 12px !important;
+          border-radius: 4px !important;
         }
 
+        /* Clean up for Mobile */
         @media (max-width: 768px) {
           .swiper-button-next,
           .swiper-button-prev {

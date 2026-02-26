@@ -15,7 +15,7 @@ export default function StoryPage() {
           {t("title")}
         </h1>
 
-        <div className="my-6 h-[1px] w-20 bg-orange-500 shadow-[0_0_15px_rgba(249,115,22,1)]" />
+        <div className="my-6 h-[1px] w-20 bg-brand shadow-[0_0_15px_rgba(249,115,22,1)]" />
 
         <div className="bg-white/5 px-6 py-2 border-x border-white/20 mb-6">
           <p className="text-lg md:text-xl font-light tracking-[0.4em] text-white uppercase italic">
@@ -27,7 +27,7 @@ export default function StoryPage() {
           {t("description")}
         </p>
 
-        <div className="mt-8 text-[9px] tracking-[0.5em] text-orange-500 font-bold opacity-80">
+        <div className="mt-8 text-[9px] tracking-[0.5em] text-brand font-bold opacity-80">
           EST. 2025 — THE DISTRICT
         </div>
       </div>

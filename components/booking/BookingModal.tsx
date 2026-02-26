@@ -72,7 +72,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
             <button
               onClick={onClose}
               title="Close (Esc)"
-              className="absolute right-6 top-6 text-xl text-neutral-500 hover:text-amber-500 transition-colors cursor-pointer"
+              className="absolute right-6 top-6 text-xl text-neutral-500 hover:text-brand transition-colors cursor-pointer"
             >
               ✕
             </button>
@@ -107,8 +107,8 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 classNames={{
                   ...defaultClassNames,
                   root: `${defaultClassNames.root} border-none font-sans`,
-                  chevron: `${defaultClassNames.chevron} fill-amber-500 scale-125`,
-                  today: `text-amber-500 font-bold underline underline-offset-4`,
+                  chevron: `${defaultClassNames.chevron} fill-brand scale-125`,
+                  today: `text-brand font-bold underline underline-offset-4`,
                 }}
               />
             </div>
@@ -125,7 +125,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     onClick={() => setGuests(option)}
                     className={`flex items-center justify-center gap-3 rounded-xl border py-4 transition-all duration-300 cursor-pointer ${
                       guests === option
-                        ? "border-amber-500 bg-amber-500/10 text-amber-500"
+                        ? "border-brand bg-brand/10 text-brand"
                         : "border-neutral-700 bg-neutral-900/30 text-neutral-400 hover:border-neutral-500"
                     }`}
                   >
@@ -135,7 +135,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         src="/icons/ui/users.svg"
                         alt="Users icon"
                         className={`transition-colors duration-300 ${
-                          guests === option ? "bg-amber-500" : "bg-neutral-400"
+                          guests === option ? "bg-brand" : "bg-neutral-400"
                         }`}
                         unoptimized
                       />
@@ -153,7 +153,7 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
                 className={`w-full py-5 text-[11px] font-black uppercase tracking-[0.3em] text-white shadow-lg transition-all active:scale-[0.98] rounded-2xl cursor-pointer ${
                   !range?.from || !range?.to
                     ? "bg-neutral-700 opacity-50 cursor-not-allowed"
-                    : "bg-amber-500 hover:bg-amber-600"
+                    : "bg-brand hover:bg-amber-600"
                 }`}
               >
                 {!range?.from || !range?.to ? t("selectDates") : t("confirm")}
