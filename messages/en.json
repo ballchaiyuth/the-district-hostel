@@ -70,7 +70,18 @@
   "BlogPage": {
     "header": "Blog",
     "readMore": "Read Article",
-    "footerBranding": "Stay Updated with the District"
+    "footerBranding": "Stay Updated with the District",
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next",
+      "page": "Page",
+      "of": "of"
+    },
+    "filter": {
+      "all": "All Stories",
+      "search": "Search articles...",
+      "noResults": "No articles found matching your search."
+    }
   },
   "StayPage": {
     "header": "Stay",

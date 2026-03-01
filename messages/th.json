@@ -69,8 +69,19 @@
   },
   "BlogPage": {
     "header": "บล็อก",
-    "readMore": "อ่านบทความ",
-    "footerBranding": "ติดตามข่าวสารจาก เดอะ ดิสทริค"
+    "readMore": "อ่านต่อ",
+    "footerBranding": "ติดตามข่าวสารกับ The District",
+    "pagination": {
+      "prev": "ก่อนหน้า",
+      "next": "ถัดไป",
+      "page": "หน้า",
+      "of": "จาก"
+    },
+    "filter": {
+      "all": "ทั้งหมด",
+      "search": "ค้นหาบทความ...",
+      "noResults": "ไม่พบบทความที่ค้นหา"
+    }
   },
   "StayPage": {
     "header": "ที่พัก",

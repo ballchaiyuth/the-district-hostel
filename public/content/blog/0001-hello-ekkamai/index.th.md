@@ -1,9 +1,11 @@
 ---
 title: "The Ekkamai Chronicles: ย่านสุดชิคที่ผสมผสานเสน่ห์วันวานกับไลฟ์สไตล์เหนือระดับ"
-date: "FEB 25, 2026"
+date: "OCT 10, 2025"
 excerpt: "สัมผัสเสน่ห์ของเอกมัย ย่านที่รวมเอาความคลาสสิกของกรุงเทพฯ มาบรรจบกับวิถีชีวิตคนเมืองยุคใหม่อย่างลงตัว"
-coverImage: "/content/blog/001-hello-ekkamai/001-cover.jpg"
+coverImage: "/content/blog/0001-hello-ekkamai/0001-cover.jpg"
 category: "NEIGHBOURHOOD"
+featured: true
+tags: ["Neighbourhood", "Lifestyle", "Food", "Nightlife", "Guide"]
 ---
 
 ## จิตวิญญาณแห่งสุขุมวิท 63
@@ -23,7 +25,7 @@ category: "NEIGHBOURHOOD"
 - **The Commons (Thonglor-Ekkamai)**: เพียงไม่กี่ก้าวจากที่พัก คอมมูนิตี้มอลล์แบบเปิดโล่งที่เป็นแหล่งรวมตัวของเหล่าครีเอทีฟในเมือง เพื่อดื่มด่ำกับกาแฟคราฟต์และอาหารอร่อยๆ ในบรรยากาศเป็นกันเอง
 
 <SingleImage 
-  src="/content/blog/001-hello-ekkamai/001-cafe-vibes.jpg" 
+  src="/content/blog/0001-hello-ekkamai/0001-cafe-vibes.jpg" 
   caption="บรรยากาศคาเฟ่สุดชิลล์ใจกลางย่านเอกมัย" 
 />
 
@@ -49,7 +51,7 @@ category: "NEIGHBOURHOOD"
 
 ---
 
-> "เอกมัยไม่ได้พยายามจะเท่ แต่มันเท่ด้วยตัวของมันเอง เป็นที่ที่จังหวะของเมืองเต้นรัวที่สุด ท่ามกลางซอยที่ร่มรื่นของสุขุมวิท"
+> เอกมัยไม่ได้พยายามจะเท่ แต่มันเท่ด้วยตัวของมันเอง เป็นที่ที่จังหวะของเมืองเต้นรัวที่สุด ท่ามกลางซอยที่ร่มรื่นของสุขุมวิท
 
 ## ค้นพบเสน่ห์ที่ซ่อนอยู่ของเอกมัย
 
@@ -57,11 +59,11 @@ category: "NEIGHBOURHOOD"
 
 <ImageGallery 
   images="
-    /content/blog/001-hello-ekkamai/001-wattana-panich.jpg,
-    /content/blog/001-hello-ekkamai/001-gateway-mall.jpg,
-    /content/blog/001-hello-ekkamai/001-donki-mall.jpg,
-    /content/blog/001-hello-ekkamai/001-thay-nightlife.jpg,
-    /content/blog/001-hello-ekkamai/001-hidden-cafe.jpg
+    /content/blog/0001-hello-ekkamai/0001-wattana-panich.jpg,
+    /content/blog/0001-hello-ekkamai/0001-gateway-mall.jpg,
+    /content/blog/0001-hello-ekkamai/0001-donki-mall.jpg,
+    /content/blog/0001-hello-ekkamai/0001-thay-nightlife.jpg,
+    /content/blog/0001-hello-ekkamai/0001-hidden-cafe.jpg
   " 
   caption="รวมแลนด์มาร์คสำคัญที่น่าสนใจในย่านเอกมัย"
 />

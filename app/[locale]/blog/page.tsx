@@ -1,106 +1,226 @@
+import TagFilter from "@/components/blog/TagFilter";
 import SafeImage from "@/components/ui/SafeImage";
 import { Link } from "@/i18n/routing";
-import { getAllPosts } from "@/lib/markdown";
+import { getAllPosts, getAllTagsWithCount } from "@/lib/markdown";
 import { getTranslations } from "next-intl/server";
 
 interface BlogPageProps {
   params: Promise<{ locale: string }>;
+  searchParams: Promise<{ page?: string; tag?: string }>;
 }
 
-export default async function BlogPage({ params }: BlogPageProps) {
+export default async function BlogPage({
+  params,
+  searchParams,
+}: BlogPageProps) {
   const { locale } = await params;
+  const { page, tag } = await searchParams;
   const t = await getTranslations("BlogPage");
   const containerClass = "max-w-7xl mx-auto px-6 md:px-12 lg:px-16";
 
-  const blogs = await getAllPosts(locale);
+  // --- Filter Logic ---
+  const selectedTags = tag ? tag.split(",") : [];
+  const allPosts = await getAllPosts(locale);
+  const allTagsWithCount = await getAllTagsWithCount(locale);
+  const totalPostsCount = allPosts.length;
+
+  const filteredPosts =
+    selectedTags.length > 0
+      ? allPosts.filter((post) =>
+          post.frontmatter.tags?.some((t) => selectedTags.includes(t)),
+        )
+      : allPosts;
+
+  // --- Pagination Logic ---
+  const currentPage = Number(page) || 1;
+  const postsPerPage = 6;
+  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const paginatedPosts = filteredPosts.slice(
+    (currentPage - 1) * postsPerPage,
+    currentPage * postsPerPage,
+  );
+
+  const getPageRange = () => {
+    const delta = 1;
+    const range: (number | string)[] = [];
+    for (let i = 1; i <= totalPages; i++) {
+      if (
+        i === 1 ||
+        i === totalPages ||
+        (i >= currentPage - delta && i <= currentPage + delta)
+      ) {
+        range.push(i);
+      } else if (range[range.length - 1] !== "...") {
+        range.push("...");
+      }
+    }
+    return range;
+  };
+
+  const getPageLink = (pageNum: number | string) => {
+    const baseUrl = `blog?page=${pageNum}`;
+    return selectedTags.length > 0
+      ? `${baseUrl}&tag=${selectedTags.join(",")}`
+      : baseUrl;
+  };
 
   return (
-    <main className="bg-neutral-950 text-white min-h-screen flex flex-col">
-      {/* Page Header */}
-      <div className="pt-24 pb-8 text-center bg-black border-b border-white/5">
+    /* Changed to bg-neutral-900 to ensure visual consistency across all sections */
+    <main className="bg-neutral-900 text-white min-h-screen flex flex-col">
+      {/* Page Header (Kept bg-black for high-contrast branding) */}
+      <header className="pt-24 pb-8 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
           <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white leading-tight">
             {t("header")}
           </h1>
           <div className="mx-auto mt-8 h-[1px] w-24 bg-brand"></div>
         </div>
-      </div>
+      </header>
 
-      {/* Blog Grid - flex-grow handles empty space if post count is low */}
-      <section className="bg-neutral-900 py-12 border-b border-white/5 flex-grow">
+      {/* Floating Filter: Purely transparent background now that main is unified */}
+      <TagFilter
+        allTags={allTagsWithCount}
+        selectedTags={selectedTags}
+        allLabel={t("filter.all")}
+        totalCount={totalPostsCount}
+      />
+
+      {/* Blog Grid: pt-0 to sit flush with the filter capsule */}
+      <section className="pb-20 border-b border-white/5 flex-grow pt-0">
         <div className={containerClass}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
-            {blogs.map((blog, index) => {
-              const { title, date, category, excerpt, coverImage } =
-                blog.frontmatter;
+          {paginatedPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+              {paginatedPosts.map((blog, index) => {
+                const { title, date, category, excerpt, coverImage, featured } =
+                  blog.frontmatter;
 
-              return (
-                <article
-                  key={blog.slug}
-                  className="group flex flex-col space-y-6"
-                >
-                  {/* Visual Container */}
-                  <div className="w-full overflow-hidden shadow-2xl bg-neutral-900 rounded-sm">
-                    <Link
-                      href={`/blog/${blog.slug}`}
-                      className="block relative aspect-[16/9] cursor-pointer"
-                    >
-                      <SafeImage
-                        src={
-                          (coverImage as string) || "/images/branding/cover.jpg"
-                        }
-                        alt={(title as string) || "Blog cover"}
-                        preload={index < 2}
-                        className="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1s] ease-out"
-                      />
-                    </Link>
-                  </div>
-
-                  {/* Content Container */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-brand uppercase">
-                      <span>{(category as string) || "JOURNAL"}</span>
-                      <span className="w-8 h-[1px] bg-white/20"></span>
-                      <span className="text-white/40">{date as string}</span>
+                return (
+                  <article
+                    key={blog.slug}
+                    className="group flex flex-col space-y-6"
+                  >
+                    <div className="w-full overflow-hidden shadow-2xl bg-neutral-950 rounded-sm">
+                      <Link
+                        href={`/blog/${blog.slug}`}
+                        className="block relative aspect-[16/9] cursor-pointer"
+                      >
+                        <SafeImage
+                          src={
+                            (coverImage as string) ||
+                            "/images/branding/cover.jpg"
+                          }
+                          alt={(title as string) || "Blog cover"}
+                          preload={index < 2}
+                          className="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-[1s] ease-out"
+                        />
+                        {featured && (
+                          <div className="absolute top-6 left-6 bg-brand text-black text-[8px] font-black tracking-[0.2em] uppercase px-3 py-1 italic shadow-xl z-10">
+                            Recommended
+                          </div>
+                        )}
+                      </Link>
                     </div>
 
-                    <Link href={`/blog/${blog.slug}`}>
-                      <h2 className="text-2xl font-light tracking-wide text-white uppercase leading-tight hover:text-brand-light transition-colors min-h-[3.5rem]">
-                        {title as string}
-                      </h2>
-                    </Link>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4 text-[10px] font-bold tracking-[0.2em] text-brand uppercase">
+                        <span>{(category as string) || "JOURNAL"}</span>
+                        <span className="w-8 h-[1px] bg-white/20"></span>
+                        <span className="text-white/40">{date as string}</span>
+                      </div>
 
-                    <p className="text-white/50 font-light leading-relaxed tracking-wide text-sm line-clamp-3">
-                      {(excerpt as string) || ""}
-                    </p>
+                      <Link href={`/blog/${blog.slug}`}>
+                        <h2 className="text-2xl font-light tracking-wide text-white uppercase leading-tight hover:text-brand-light transition-colors min-h-[3.5rem]">
+                          {title as string}
+                        </h2>
+                      </Link>
 
-                    <Link
-                      href={`/blog/${blog.slug}`}
-                      className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase pt-2"
-                    >
-                      <span className="border-b border-white/20 pb-1 group-hover:border-brand transition-colors">
-                        {t("readMore")}
-                      </span>
-                      <span className="text-brand group-hover:translate-x-2 transition-transform">
-                        →
-                      </span>
-                    </Link>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
+                      <p className="text-white/50 font-light leading-relaxed tracking-wide text-sm line-clamp-3">
+                        {(excerpt as string) || ""}
+                      </p>
+
+                      <Link
+                        href={`/blog/${blog.slug}`}
+                        className="group flex items-center gap-3 text-[10px] font-bold tracking-[0.3em] uppercase pt-2"
+                      >
+                        <span className="border-b border-white/20 pb-1 group-hover:border-brand transition-colors">
+                          {t("readMore")}
+                        </span>
+                        <span className="text-brand group-hover:translate-x-2 transition-transform">
+                          →
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="py-20 text-center text-white/30 text-xs tracking-widest uppercase italic">
+              {t("filter.noResults")}
+            </div>
+          )}
+
+          {/* Pagination Controls */}
+          {totalPages > 1 && (
+            <nav className="mt-32 w-full flex flex-col items-center">
+              <div className="w-full flex justify-center mb-10">
+                <p className="text-[9px] font-bold tracking-[0.5em] uppercase text-white/20 italic text-center translate-x-[0.25em]">
+                  {t("pagination.page")} {currentPage} {t("pagination.of")}{" "}
+                  {totalPages}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-3 items-center w-full max-w-2xl mx-auto">
+                <div className="flex justify-end">
+                  <Link
+                    href={getPageLink(Math.max(1, currentPage - 1))}
+                    className={`text-[10px] font-bold tracking-[0.2em] uppercase px-6 py-2 transition-all ${currentPage === 1 ? "opacity-0 pointer-events-none" : "text-white/50 hover:text-brand"}`}
+                  >
+                    {t("pagination.prev")}
+                  </Link>
+                </div>
+
+                <div className="flex items-center justify-center gap-1">
+                  {getPageRange().map((p, i) => (
+                    <div key={i} className="flex items-center justify-center">
+                      {p === "..." ? (
+                        <span className="w-10 h-10 flex items-center justify-center text-white/20 text-[10px]">
+                          ...
+                        </span>
+                      ) : (
+                        <Link
+                          href={getPageLink(p as number)}
+                          className={`w-10 h-10 flex items-center justify-center text-[10px] font-bold transition-all border border-transparent ${p === currentPage ? "bg-brand text-black italic scale-110 shadow-lg" : "text-white/40 hover:text-white hover:border-white/10"}`}
+                        >
+                          {(p as number).toString().padStart(2, "0")}
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex justify-start">
+                  <Link
+                    href={getPageLink(Math.min(totalPages, currentPage + 1))}
+                    className={`text-[10px] font-bold tracking-[0.2em] uppercase px-6 py-2 transition-all ${currentPage === totalPages ? "opacity-0 pointer-events-none" : "text-white/50 hover:text-brand"}`}
+                  >
+                    {t("pagination.next")}
+                  </Link>
+                </div>
+              </div>
+            </nav>
+          )}
         </div>
       </section>
 
-      {/* Footer Branding - Always pushed to the bottom */}
-      <div className="py-12 bg-neutral-950 border-t border-white/5">
+      {/* Footer Branding */}
+      <footer className="py-12 bg-neutral-950 border-t border-white/5">
         <div className={`${containerClass} text-center`}>
           <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/30">
             {t("footerBranding")}
           </p>
         </div>
-      </div>
+      </footer>
     </main>
   );
 }

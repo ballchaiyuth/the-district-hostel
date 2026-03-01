@@ -24,6 +24,7 @@ export default function LocaleSwitcher() {
   const currentLang = languages.find((l) => l.code === locale) || languages[0];
 
   const onSelectChange = (nextLocale: string) => {
+    if (nextLocale === locale) return;
     setIsOpen(false);
     startTransition(() => {
       // @ts-expect-error - params is a dynamic object from Next.js 15
@@ -31,7 +32,9 @@ export default function LocaleSwitcher() {
     });
   };
 
-  // Close dropdown on click outside or Escape key
+  /**
+   * Close dropdown on click outside or Escape key
+   */
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -63,9 +66,9 @@ export default function LocaleSwitcher() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         disabled={isPending}
-        className={`cursor-pointer flex items-center transition-opacity hover:opacity-80 ${isPending ? "opacity-50" : ""}`}
+        className={`cursor-pointer flex items-center transition-all hover:scale-110 active:scale-95 ${isPending ? "opacity-50" : ""}`}
       >
-        <div className="relative h-6 w-6 overflow-hidden">
+        <div className="relative h-6 w-6 overflow-hidden rounded-full border border-white/10 shadow-lg">
           <Image
             src={currentLang.flag}
             alt={currentLang.label}
@@ -77,38 +80,45 @@ export default function LocaleSwitcher() {
 
       {/* Language Options Dropdown */}
       <div
-        className={`absolute right-0 lg:right-auto lg:left-1/2 lg:-translate-x-1/2 top-full mt-4 w-40 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/80 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backdrop-blur-2xl z-20 transition-all duration-300 ease-out ${
-          isOpen
-            ? "opacity-100 translate-y-0 pointer-events-auto"
-            : "opacity-0 -translate-y-2 pointer-events-none"
-        }`}
+        className={`
+          absolute top-full mt-4 w-44 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/90 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-2xl z-20 transition-all duration-300 ease-out right-0 sm:right-auto sm:left-1/2 sm:-translate-x-1/2
+          
+          ${
+            isOpen
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 -translate-y-2 pointer-events-none"
+          }
+        `}
       >
         <div className="py-2">
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              onClick={() => onSelectChange(lang.code)}
-              className="group flex w-full items-center gap-4 px-5 py-3 transition-colors hover:bg-white/10 cursor-pointer text-left"
-            >
-              <div className="relative h-4 w-5 shrink-0 overflow-hidden rounded-[1px]">
-                <Image
-                  src={lang.flag}
-                  alt={lang.label}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <span
-                className={`text-[10px] font-bold tracking-[0.2em] transition-colors ${
-                  locale === lang.code
-                    ? "text-brand-light"
-                    : "text-white group-hover:text-brand-light"
-                }`}
+          {languages.map((lang) => {
+            const isActive = locale === lang.code;
+            return (
+              <button
+                key={lang.code}
+                onClick={() => onSelectChange(lang.code)}
+                className="flex w-full items-center justify-between px-5 py-3 transition-colors cursor-pointer text-left hover:bg-white/5"
               >
-                {lang.label}
-              </span>
-            </button>
-          ))}
+                <div className="flex items-center gap-4">
+                  <div className="relative h-4 w-5 shrink-0 overflow-hidden rounded-[1px] opacity-80">
+                    <Image
+                      src={lang.flag}
+                      alt={lang.label}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <span
+                    className={`text-[10px] font-bold tracking-[0.2em] transition-colors ${
+                      isActive ? "text-brand" : "text-white/60 hover:text-white"
+                    }`}
+                  >
+                    {lang.label}
+                  </span>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
     </div>

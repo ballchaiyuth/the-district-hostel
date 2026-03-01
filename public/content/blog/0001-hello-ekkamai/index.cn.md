@@ -1,9 +1,11 @@
 ---
 title: "Ekkamai 纪事：曼谷最精致的潮流圣地"
-date: "FEB 25, 2026"
+date: "OCT 10, 2025"
 excerpt: "在摩天大楼之外，有一个完美融合了历史魅力与高端都市生活的社区。欢迎来到 Ekkamai 的核心地带。"
-coverImage: "/content/blog/001-hello-ekkamai/001-cover.jpg"
+coverImage: "/content/blog/0001-hello-ekkamai/0001-cover.jpg"
 category: "NEIGHBOURHOOD"
+featured: true
+tags: ["Neighbourhood", "Lifestyle", "Food", "Nightlife", "Guide"]
 ---
 
 ## 素坤逸 63 巷的灵魂
@@ -23,7 +25,7 @@ Ekkamai 不仅仅是一条街道，更是一种生活方式。Ekkamai（素坤�
 - **The Commons (Thonglor-Ekkamai)**：距离旅店仅几步之遥，这个垂直的露天庭院是城市创意人士聚集、享受手工咖啡和社区餐饮的地方。
 
 <SingleImage 
-  src="/content/blog/001-hello-ekkamai/001-cafe-vibes.jpg" 
+  src="/content/blog/0001-hello-ekkamai/0001-cafe-vibes.jpg" 
   caption="曼谷 Ekkamai 核心区域阳光充沛的咖啡厅氛围" 
 />
 
@@ -49,7 +51,7 @@ Ekkamai 的美食场景闻名世界。您可以在这里领略曼谷的历史韵
 
 ---
 
-> "Ekkamai 不需要刻意耍酷，它天生如此。在素坤逸那些绿意盎然的小巷里，城市的脉搏跳动得最为强烈。"
+> Ekkamai 不需要刻意耍酷，它天生如此。在素坤逸那些绿意盎然的小巷里，城市的脉搏跳动得最为强烈。
 
 ## 发现 Ekkamai 的隐藏瑰宝
 
@@ -57,11 +59,11 @@ Ekkamai 的美食场景闻名世界。您可以在这里领略曼谷的历史韵
 
 <ImageGallery 
   images="
-    /content/blog/001-hello-ekkamai/001-wattana-panich.jpg,
-    /content/blog/001-hello-ekkamai/001-gateway-mall.jpg,
-    /content/blog/001-hello-ekkamai/001-donki-mall.jpg,
-    /content/blog/001-hello-ekkamai/001-thay-nightlife.jpg,
-    /content/blog/001-hello-ekkamai/001-hidden-cafe.jpg
+    /content/blog/0001-hello-ekkamai/0001-wattana-panich.jpg,
+    /content/blog/0001-hello-ekkamai/0001-gateway-mall.jpg,
+    /content/blog/0001-hello-ekkamai/0001-donki-mall.jpg,
+    /content/blog/0001-hello-ekkamai/0001-thay-nightlife.jpg,
+    /content/blog/0001-hello-ekkamai/0001-hidden-cafe.jpg
   " 
   caption="精心挑选的 Ekkamai 标志性地标"
 />
