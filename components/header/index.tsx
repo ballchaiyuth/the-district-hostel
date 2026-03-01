@@ -13,7 +13,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
 
-  // Bold navigation links with slightly tighter tracking for a premium feel
   const navLinks = [
     { href: "/story", label: t("story") },
     { href: "/offers", label: t("offers") },
@@ -23,17 +22,24 @@ const Header = () => {
 
   return (
     <>
-      {/* Fixed Header with Glassmorphism overlaying the content */}
-      <header className="fixed top-0 z-50 w-full bg-black/75 backdrop-blur-md border-b border-white/5 transition-all duration-300">
-        <div className="relative z-10 flex items-center justify-between py-4 px-6">
-          {/* Brand & Menu */}
+      {/* Sticky Header with Advanced Glassmorphism */}
+      <header className="fixed top-0 z-50 w-full backdrop-blur-xl transition-all duration-300 group">
+        {/* Visual Layers: Background & Gradients */}
+        <div className="absolute inset-0 bg-black/60 -z-20" />
+
+        {/* Bottom Luminous Glow: Enhances separation from page content */}
+        <div className="absolute inset-x-0 bottom-0 h-[60%] bg-gradient-to-t from-white/[0.08] to-transparent pointer-events-none -z-10" />
+
+        {/* Main Header Content Container */}
+        <div className="relative z-10 flex items-center justify-between py-5 px-6">
+          {/* Brand & Menu Trigger */}
           <div className="flex items-center gap-4 md:gap-6">
             <button
               onClick={() => setIsMenuOpen(true)}
               className="group relative h-8 w-8 shrink-0 cursor-pointer"
               aria-label="Open Menu"
             >
-              {/* Menu Icon: White (Default) */}
+              {/* Menu Icon Transition (White to Brand) */}
               <div className="absolute inset-0 h-full w-full transition-opacity duration-300 group-hover:opacity-0">
                 <SafeImage
                   src="/icons/ui/menu-white.svg"
@@ -67,7 +73,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Navigation & CTAs */}
+          {/* Desktop Navigation & CTAs */}
           <div className="flex items-center gap-4 lg:gap-8">
             <nav className="hidden lg:flex gap-8 text-white text-sm tracking-[0.2em] uppercase">
               {navLinks.map((link) => (
@@ -95,6 +101,7 @@ const Header = () => {
         </div>
       </header>
 
+      {/* Navigation Modals */}
       <MenuOverlay
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}

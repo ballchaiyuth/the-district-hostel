@@ -1,9 +1,11 @@
 ---
 title: "The Ekkamai Chronicles: Bangkok’s Most Sophisticated Playground"
-date: "FEB 25, 2026"
+date: "OCT 10, 2025"
 excerpt: "Beyond the skyscrapers lies a neighborhood that perfectly blends heritage charms with high-end urban living. Welcome to the heart of Ekkamai."
-coverImage: "/content/blog/001-hello-ekkamai/001-cover.jpg"
+coverImage: "/content/blog/0001-hello-ekkamai/0001-cover.jpg"
 category: "NEIGHBOURHOOD"
+featured: true
+tags: ["Neighbourhood", "Lifestyle", "Food", "Nightlife", "Guide"]
 ---
 
 ## The Soul of Sukhumvit 63
@@ -23,7 +25,7 @@ Whether you are looking for local crafts or world-class retail therapy, Ekkamai 
 - **The Commons (Thonglor-Ekkamai)**: Just a short hop away, this vertical open-air courtyard is where the city’s creative crowd gathers for artisanal coffee and communal dining.
 
 <SingleImage 
-  src="/content/blog/001-hello-ekkamai/001-cafe-vibes.jpg" 
+  src="/content/blog/0001-hello-ekkamai/0001-cafe-vibes.jpg" 
   caption="Sun-drenched cafe vibes in the heart of Ekkamai" 
 />
 
@@ -49,7 +51,7 @@ Ekkamai is world-renowned for its dining scene. You can literally taste the hist
 
 ---
 
-> "Ekkamai doesn't try to be cool; it just is. It's where the city's pulse beats strongest, tucked away in the leafy alleys of Sukhumvit."
+> Ekkamai doesn't try to be cool; it just is. It's where the city's pulse beats strongest, tucked away in the leafy alleys of Sukhumvit.
 
 ## Discover Ekkamai's Hidden Gems
 
@@ -57,11 +59,11 @@ From century-old recipes to world-class shopping and cozy hideaways, here is a v
 
 <ImageGallery 
   images="
-    /content/blog/001-hello-ekkamai/001-wattana-panich.jpg,
-    /content/blog/001-hello-ekkamai/001-gateway-mall.jpg,
-    /content/blog/001-hello-ekkamai/001-donki-mall.jpg,
-    /content/blog/001-hello-ekkamai/001-thay-nightlife.jpg,
-    /content/blog/001-hello-ekkamai/001-hidden-cafe.jpg
+    /content/blog/0001-hello-ekkamai/0001-wattana-panich.jpg,
+    /content/blog/0001-hello-ekkamai/0001-gateway-mall.jpg,
+    /content/blog/0001-hello-ekkamai/0001-donki-mall.jpg,
+    /content/blog/0001-hello-ekkamai/0001-thay-nightlife.jpg,
+    /content/blog/0001-hello-ekkamai/0001-hidden-cafe.jpg
   " 
   caption="A curated selection of Ekkamai's iconic landmarks"
 />

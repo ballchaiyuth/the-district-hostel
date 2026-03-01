@@ -55,7 +55,7 @@ export default function GalleryPage() {
       {/* Hero Header */}
       <div className="pt-24 pb-8 text-center bg-black border-b border-white/5">
         <div className={containerClass}>
-          <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white">
+          <h1 className="text-5xl md:text-7xl font-light tracking-[0.3em] uppercase text-white leading-tight">
             {t("header")}
           </h1>
           <div className="mx-auto mt-8 h-[1px] w-24 bg-brand"></div>

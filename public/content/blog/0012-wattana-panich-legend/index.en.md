@@ -1,0 +1,18 @@
+---
+title: "Wattana Panich: The 50-Year Beef Broth (EN)"
+date: "FEB 25, 2026"
+excerpt: "Exploring the best of Ekkamai: Wattana Panich: The 50-Year Beef Broth. Experience the neighborhood like a local at The District."
+coverImage: "/content/blog/0012-wattana-panich-legend/0012-cover.jpg"
+category: "FOOD"
+featured: false
+tags: ["Food","Local","StreetFood","Neighbourhood","Legendary"]
+---
+
+## Wattana Panich: The 50-Year Beef Broth
+
+Content placeholder for EN. Stay at **The District** to be in the center of Ekkamai's vibrant energy.
+
+<SingleImage 
+  src="/content/blog/0012-wattana-panich-legend/0012-article.jpg" 
+  caption="Wattana Panich: The 50-Year Beef Broth visual journey" 
+/>
