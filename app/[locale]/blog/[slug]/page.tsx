@@ -1,0 +1,208 @@
+import BlogGallery from "@/components/blog/BlogGallery";
+import SafeImage from "@/components/ui/SafeImage";
+import { Link } from "@/i18n/routing";
+import { getPostBySlug } from "@/lib/markdown";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import { notFound } from "next/navigation";
+import { ComponentPropsWithoutRef } from "react";
+import remarkGfm from "remark-gfm";
+
+interface PostPageProps {
+  params: Promise<{
+    slug: string;
+    locale: string;
+  }>;
+}
+
+/**
+ * MDX Components for stylized article content
+ */
+const mdxComponents = {
+  ImageGallery: (props: { images?: string | string[]; caption?: string }) => (
+    <div className="not-prose my-16 group">
+      <BlogGallery images={props.images} />
+      {props.caption && (
+        <div className="mt-6 flex justify-center px-4">
+          <div className="flex items-center gap-4">
+            <div className="h-[1px] w-8 bg-brand/30" />
+            <p className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/40">
+              {props.caption}
+            </p>
+            <div className="h-[1px] w-8 bg-brand/30" />
+          </div>
+        </div>
+      )}
+    </div>
+  ),
+
+  SingleImage: (props: { src: string; alt?: string; caption?: string }) => (
+    <div className="not-prose my-16 group">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl">
+        <SafeImage
+          src={props.src}
+          alt={props.caption || props.alt || "The District Blog Image"}
+          className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+        />
+      </div>
+      {props.caption && (
+        <div className="mt-6 flex justify-center px-4">
+          <div className="flex items-center gap-4">
+            <div className="h-[1px] w-8 bg-brand/30" />
+            <p className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/40">
+              {props.caption}
+            </p>
+            <div className="h-[1px] w-8 bg-brand/30" />
+          </div>
+        </div>
+      )}
+    </div>
+  ),
+
+  img: (props: ComponentPropsWithoutRef<"img">) => (
+    <div className="not-prose my-16 group">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2rem] border border-white/5 shadow-2xl">
+        {props.src && (
+          <SafeImage
+            src={props.src}
+            alt={props.alt || ""}
+            className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+          />
+        )}
+      </div>
+      {props.alt && (
+        <div className="mt-6 flex justify-center px-4">
+          <div className="flex items-center gap-4">
+            <div className="h-[1px] w-8 bg-brand/30" />
+            <p className="text-[10px] font-medium uppercase tracking-[0.4em] text-white/40">
+              {props.alt}
+            </p>
+            <div className="h-[1px] w-8 bg-brand/30" />
+          </div>
+        </div>
+      )}
+    </div>
+  ),
+};
+
+export default async function PostPage({ params }: PostPageProps) {
+  const { slug, locale } = await params;
+  const post = await getPostBySlug(slug, locale);
+
+  if (!post) notFound();
+
+  const { frontmatter, content } = post;
+  const tags = (frontmatter.tags as string[]) || [];
+
+  return (
+    <article className="min-h-screen bg-neutral-950 text-white pb-32 relative">
+      {/* 1. Desktop Navigation: Floating side link */}
+      <Link
+        href="/blog"
+        className="fixed top-24 left-8 z-50 hidden lg:flex items-center gap-4 group opacity-50 hover:opacity-100 transition-opacity"
+      >
+        <div className="w-10 h-[1px] bg-white group-hover:w-16 transition-all" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.3em]">
+          Discover More Stories
+        </span>
+      </Link>
+
+      {/* 2. Hero Section: Fluid height with padding safety */}
+      <div className="relative min-h-[70vh] md:min-h-[85vh] w-full flex flex-col justify-end pt-40 pb-20 md:pt-60 md:pb-32">
+        {/* Visual Background */}
+        <div className="absolute inset-0 z-0">
+          <SafeImage
+            src={
+              (frontmatter.coverImage as string) || "/images/branding/cover.jpg"
+            }
+            alt={(frontmatter.title as string) || "Blog Cover"}
+            preload={true}
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-black/20 to-transparent" />
+        </div>
+
+        {/* Content Overlay */}
+        <div className="relative z-10 max-w-7xl mx-auto px-8 md:px-20 w-full">
+          <div className="max-w-5xl">
+            {/* 3. Mobile Navigation: Breadcrumb style */}
+            <div className="lg:hidden mb-12">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.3em] text-white/50"
+              >
+                <span className="text-brand">←</span> Discover More Stories
+              </Link>
+            </div>
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-6 mb-8">
+              <p className="text-brand text-[10px] font-bold uppercase tracking-[0.5em]">
+                {frontmatter.date as string}
+              </p>
+              <div className="h-[1px] w-12 bg-white/20" />
+              <div className="flex gap-4">
+                {tags.map((tag) => (
+                  <Link
+                    key={tag}
+                    href={`/blog?tag=${tag}`}
+                    className="text-[9px] font-bold text-white/40 uppercase tracking-[0.2em] hover:text-brand transition-colors"
+                  >
+                    #{tag}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Fluid Header Typography */}
+            <h1 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-black uppercase tracking-tighter leading-[0.85] text-white italic drop-shadow-2xl">
+              {frontmatter.title as string}
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      {/* Article Body */}
+      <div className="max-w-3xl mx-auto px-6 mt-32">
+        {/* Excerpt Block */}
+        {frontmatter.excerpt && (
+          <p className="text-xl md:text-2xl font-light leading-relaxed text-white/70 italic mb-20 border-l-2 border-brand pl-8">
+            {frontmatter.excerpt as string}
+          </p>
+        )}
+
+        <div
+          className="
+          prose prose-invert prose-white 
+          max-w-none
+
+          /* Hierarchy & Typography */
+          prose-h2:text-white prose-h2:text-4xl prose-h2:tracking-[0.1em] prose-h2:uppercase prose-h2:font-black prose-h2:mt-32 prose-h2:mb-12
+          prose-h3:text-white prose-h3:text-2xl prose-h3:tracking-wide prose-h3:uppercase prose-h3:mt-20
+          prose-p:text-neutral-400 prose-p:leading-relaxed prose-p:text-lg prose-p:mb-8
+          prose-strong:text-brand prose-strong:font-bold
+
+          /* Block Elements */
+          prose-blockquote:border-l-brand prose-blockquote:bg-white/5 prose-blockquote:py-8 prose-blockquote:px-10 prose-blockquote:rounded-r-3xl
+          prose-blockquote:italic prose-blockquote:text-white prose-blockquote:text-xl prose-blockquote:leading-relaxed prose-blockquote:my-16
+
+          /* Table & List Aesthetics */
+          prose-table:border-white/10 prose-table:my-16
+          prose-th:text-brand prose-th:uppercase prose-th:text-[11px] prose-th:tracking-[0.3em] prose-th:py-6
+          prose-td:py-6 prose-td:text-neutral-300
+          prose-li:text-neutral-400 prose-li:marker:text-brand
+        "
+        >
+          {content && (
+            <MDXRemote
+              source={content}
+              components={mdxComponents}
+              options={{
+                mdxOptions: { remarkPlugins: [remarkGfm] },
+              }}
+            />
+          )}
+        </div>
+      </div>
+    </article>
+  );
+}

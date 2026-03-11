@@ -1,0 +1,34 @@
+import { useTranslations } from "next-intl";
+
+export default function Home() {
+  const t = useTranslations("HomePage");
+
+  return (
+    <div
+      className="relative flex min-h-screen flex-col items-center justify-center bg-cover bg-center bg-no-repeat px-4 text-center"
+      style={{ backgroundImage: "url('/images/home/hero-bg.jpg')" }}
+    >
+      {/* Overlay for better text legibility */}
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-[2px]"></div>
+
+      {/* Hero Content */}
+      <div className="relative z-10 space-y-6">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tighter text-white uppercase drop-shadow-md">
+          {t("title")}
+        </h1>
+
+        <div className="mx-auto h-[1px] w-24 bg-brand"></div>
+
+        <p className="max-w-xl text-lg md:text-xl font-light tracking-[0.3em] text-white/90 uppercase italic drop-shadow-sm">
+          {t("subtitle")}
+        </p>
+
+        <div className="pt-10">
+          <button className="border border-white px-10 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-white hover:bg-brand hover:border-brand hover:text-black transition-all duration-300 cursor-pointer">
+            {t("cta")}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

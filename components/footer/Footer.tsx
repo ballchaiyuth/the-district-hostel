@@ -1,0 +1,158 @@
+"use client";
+
+import SafeImage from "@/components/ui/SafeImage";
+import { Link } from "@/i18n/routing";
+import { useTranslations } from "next-intl";
+
+const Footer = () => {
+  const t = useTranslations("Common");
+  const nav = useTranslations("Navigation");
+
+  const socialIcons = [
+    {
+      name: "youtube",
+      icon: "/icons/social/youtube.svg",
+      url: "https://www.youtube.com/",
+    },
+    {
+      name: "tiktok",
+      icon: "/icons/social/tiktok.svg",
+      url: "https://www.tiktok.com/",
+    },
+    {
+      name: "instagram",
+      icon: "/icons/social/instagram.svg",
+      url: "https://www.instagram.com/",
+    },
+    {
+      name: "facebook",
+      icon: "/icons/social/facebook.svg",
+      url: "https://www.facebook.com/",
+    },
+    {
+      name: "line",
+      icon: "/icons/social/line.svg",
+      url: "https://line.me/th/",
+    },
+  ];
+
+  return (
+    <footer className="relative bg-black text-white">
+      {/* Background with Ambient Overlay */}
+      <div className="absolute inset-0 z-0 opacity-30">
+        <SafeImage
+          src="/images/branding/cover.jpg"
+          alt="Footer background"
+          unoptimized
+        />
+      </div>
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black via-black/80 to-transparent" />
+
+      {/* Main Content Container */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 pt-16 pb-8 md:pt-20 md:pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 items-start">
+          {/* 1. Navigation & Socials */}
+          <div className="flex flex-col items-center md:items-start space-y-6 text-center md:text-left">
+            <nav className="flex flex-col space-y-3 text-xs font-bold tracking-widest uppercase">
+              <Link
+                href="/go-green"
+                className="hover:text-brand transition-colors"
+              >
+                {nav("goGreen")}
+              </Link>
+              <Link
+                href="/privacy"
+                className="hover:text-brand transition-colors"
+              >
+                {nav("privacy")}
+              </Link>
+              <Link
+                href="/contact"
+                className="hover:text-brand transition-colors"
+              >
+                {nav("contact")}
+              </Link>
+            </nav>
+
+            {/* Social Icons with Brand Hover */}
+            <div className="space-y-3">
+              <p className="text-[10px] font-bold tracking-widest uppercase opacity-50">
+                Follow Us
+              </p>
+              <div className="flex gap-4">
+                {socialIcons.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group transition-all duration-300"
+                  >
+                    <div
+                      className="w-5 h-5 bg-white opacity-60 group-hover:bg-brand group-hover:opacity-100 transition-all duration-300 cursor-pointer"
+                      style={{
+                        maskImage: `url(${item.icon})`,
+                        maskRepeat: "no-repeat",
+                        maskPosition: "center",
+                        maskSize: "contain",
+                        WebkitMaskImage: `url(${item.icon})`,
+                        WebkitMaskRepeat: "no-repeat",
+                        WebkitMaskPosition: "center",
+                        WebkitMaskSize: "contain",
+                      }}
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Branding Central */}
+          <div className="flex flex-col items-center justify-center space-y-4">
+            <div className="relative w-32 md:w-44 aspect-square overflow-hidden rounded-2xl border border-white/5 shadow-lg">
+              <SafeImage
+                src="/images/branding/logo.jpg"
+                alt="The District Logo"
+              />
+            </div>
+            <p className="text-[8px] tracking-[0.4em] uppercase font-bold text-white/40 text-center">
+              {t("brandName")} Hostel
+            </p>
+          </div>
+
+          {/* 3. Contact Information */}
+          <div className="flex flex-col items-center md:items-end space-y-8 text-xs font-light tracking-widest text-white/80 text-center md:text-right">
+            <div className="space-y-2">
+              <p className="font-bold text-white uppercase tracking-widest">
+                {t("reservations")}
+              </p>
+              <p className="text-[10px] font-bold">099-999-9999</p>
+              <p className="text-[10px] underline decoration-brand/40 hover:text-brand transition-colors">
+                stay@thedistrict.com
+              </p>
+            </div>
+
+            <div className="space-y-2">
+              <p className="font-bold text-white uppercase tracking-widest">
+                {t("inquiries")}
+              </p>
+              <p className="text-[10px] font-bold">hello@thedistrict.com</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 4. Legal & Address */}
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col items-center space-y-4">
+          <p className="text-[10px] text-center text-white/40 tracking-wide font-light italic max-w-2xl mx-auto">
+            📍 {t("address")}
+          </p>
+          <p className="text-[8px] text-white/30 uppercase tracking-[0.3em] font-bold">
+            Copyright © 2026 THE DISTRICT. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

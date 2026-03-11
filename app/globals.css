@@ -1,1 +1,10 @@
 @import "tailwindcss";
+@import "flag-icons/css/flag-icons.min.css";
+
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-brand: #fece00;
+  --color-brand-light: #ffde4d;
+  --color-brand-dark: #cbab27;
+}
