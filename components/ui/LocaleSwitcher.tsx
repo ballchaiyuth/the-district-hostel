@@ -81,7 +81,7 @@ export default function LocaleSwitcher() {
       {/* Language Options Dropdown */}
       <div
         className={`
-          absolute top-full mt-4 w-44 overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/90 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-2xl z-20 transition-all duration-300 ease-out right-0 sm:right-auto sm:left-1/2 sm:-translate-x-1/2
+          absolute top-full mt-4 w-44 overflow-hidden rounded-2xl border border-white/10 bg-muted/90 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-2xl z-20 transition-all duration-300 ease-out right-0 sm:right-auto sm:left-1/2 sm:-translate-x-1/2
           
           ${
             isOpen

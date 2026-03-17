@@ -6,6 +6,51 @@
   --color-brand: #fece00;
   --color-brand-light: #ffde4d;
   --drop-shadow-brand: 0 0 20px rgba(254, 206, 0, 0.8);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-luxury-overlay: var(--luxury-overlay);
+}
+
+@layer base {
+  /* prettier-ignore */
+  :root {
+    --background: #f4f0ea;           /* Linen - Light background */
+    --foreground: #3d3128;           /* Espresso - Readable dark text */
+    --card: #ebe5dc;                 /* Warm Linen - Component surfaces */
+    --card-foreground: #3d3128;      /* Warm text on cards */
+    --muted: #dfd8cc;                /* Soft Taupe - Muted areas */
+    --muted-foreground: #a39b92;     /* Muted text */
+    --border: #d1c7b8;               /* Taupe border */
+    --border-strong: #141414;        /* Dark border for light theme */
+    --luxury-overlay: #f4f0ea;       /* Warm overlay */
+  }
+
+  /* prettier-ignore */
+  .dark {
+    --background: #000000;           /* Pure Black */
+    --foreground: #fcfaf8;           /* Off-white text */
+    --card: #0a0a0a;                 /* Neutral 950 */
+    --card-foreground: #fcfaf8;      /* Off-white text on cards */
+    --muted: #171717;                /* Neutral 900 */
+    --muted-foreground: #8c8c8c;     /* Neutral grey text */
+    --border: #141414;               /* Subtle dark border */
+    --border-strong: #d1c7b8;        /* Light border for dark theme */
+    --luxury-overlay: #121212;       /* Dark overlay */
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    @apply transition-colors duration-300;
+  }
 }
 
 @utility text-shadow-brand {
