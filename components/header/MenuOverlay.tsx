@@ -1,6 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
+import BookingButton from "@/components/ui/BookingButton";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,10 +9,9 @@ import { useEffect, useState } from "react";
 interface MenuOverlayProps {
   isOpen: boolean;
   onClose: () => void;
-  onBookingClick: () => void;
 }
 
-const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
+const MenuOverlay = ({ isOpen, onClose }: MenuOverlayProps) => {
   const t = useTranslations("Navigation");
   const pathname = usePathname();
   const [animate, setAnimate] = useState(false);
@@ -125,12 +125,10 @@ const MenuOverlay = ({ isOpen, onClose, onBookingClick }: MenuOverlayProps) => {
           <div
             className={`mt-10 w-full flex justify-center lg:hidden transition-all duration-400 delay-300 ${animate ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
           >
-            <button
-              onClick={onBookingClick}
-              className="w-full max-w-[240px] border border-white/20 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.3em] text-white hover:bg-brand hover:border-brand hover:text-black cursor-pointer transition-all duration-300"
-            >
-              {t("checkAvailability")}
-            </button>
+            <BookingButton
+              onClick={onClose}
+              className="w-full max-w-[240px] px-6 py-4 tracking-[0.3em]"
+            />
           </div>
         </nav>
       </div>

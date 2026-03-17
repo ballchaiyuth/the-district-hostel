@@ -3,13 +3,6 @@
     "title": "The District Ekkamai | Genuine Hostel Service",
     "description": "Discover the best hostel experience in Ekkamai, Bangkok."
   },
-  "Common": {
-    "brandName": "The District Ekkamai",
-    "locationLabel": "Location",
-    "address": "126/31 Floor 2, Park Avenue, Soi Sukhumvit 63, Khlong Tan Nuea, Watthana, Bangkok 10110",
-    "reservations": "Reservations",
-    "inquiries": "General Inquiries"
-  },
   "Navigation": {
     "home": "Home",
     "checkAvailability": "Check Availability",
@@ -25,14 +18,6 @@
   },
   "FloatingMessenger": {
     "tagline": "Chat with us!"
-  },
-  "Booking": {
-    "header": "Availability",
-    "guestsLabel": "Number of Guests",
-    "selectDates": "Select Dates to Continue",
-    "confirm": "Confirm Booking",
-    "clear": "Clear Selection",
-    "alertMessage": "Booking for {guests} people: {start} - {end}"
   },
   "HomePage": {
     "title": "The District",
@@ -107,7 +92,16 @@
     "status": "Ensuring Your Security and Comfort",
     "description": "Our privacy policy is being updated to ensure your data is handled with the highest level of care and transparency."
   },
-  "ContactPage": {
-    "header": "Contact"
+  "Contact": {
+    "header": "Contact",
+    "location": "Location",
+    "phone": "Phone",
+    "phoneNote": "Call us anytime",
+    "inquiries": "General Inquiries",
+    "address": "126/31 Floor 2, Park Avenue, Soi Sukhumvit 63, Khlong Tan Nuea, Watthana, Bangkok 10110",
+    "followUs": "Follow Us",
+    "getDirections": "Get Directions",
+    "googleMaps": "Google Maps",
+    "responseNote": "Typical response time: Within 24 hours"
   }
 }

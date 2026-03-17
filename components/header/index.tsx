@@ -1,7 +1,7 @@
 "use client";
 
-import BookingModal from "@/components/booking/BookingModal";
 import MenuOverlay from "@/components/header/MenuOverlay";
+import BookingButton from "@/components/ui/BookingButton";
 import LocaleSwitcher from "@/components/ui/LocaleSwitcher";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
@@ -13,7 +13,6 @@ const Header = () => {
   const t = useTranslations("Navigation");
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isBookingOpen, setIsBookingOpen] = useState(false);
 
   // Returns true when this link matches the current page
   const isActive = (href: string) => {
@@ -64,7 +63,9 @@ const Header = () => {
               className="group/brand flex flex-row items-end gap-2"
             >
               {/* Logo Image — glows when on home page as 'selected' state */}
-              <div className={`relative h-8 md:h-10 aspect-square overflow-hidden rounded-lg transition-all duration-500 group-hover/brand:drop-shadow-brand ${isActive("/") ? "drop-shadow-brand" : ""}`}>
+              <div
+                className={`relative h-8 md:h-10 aspect-square overflow-hidden rounded-lg transition-all duration-500 group-hover/brand:drop-shadow-brand ${isActive("/") ? "drop-shadow-brand" : ""}`}
+              >
                 <Image
                   src="/images/branding/logo.jpg"
                   alt="The District Logo"
@@ -74,11 +75,13 @@ const Header = () => {
               </div>
 
               {/* 'Hostel' subtitle — brand color when on home page */}
-              <span className={`text-[7px] md:text-[9px] font-bold tracking-[0.4em] uppercase transition-all duration-700 group-hover/brand:tracking-[0.6em] pb-0.5 ${
-                isActive("/")
-                  ? "text-brand group-hover/brand:text-shadow-brand"
-                  : "text-white/30 group-hover/brand:text-brand"
-              }`}>
+              <span
+                className={`text-[7px] md:text-[9px] font-bold tracking-[0.4em] uppercase transition-all duration-700 group-hover/brand:tracking-[0.6em] pb-0.5 ${
+                  isActive("/")
+                    ? "text-brand group-hover/brand:text-shadow-brand"
+                    : "text-white/30 group-hover/brand:text-brand"
+                }`}
+              >
                 Hostel
               </span>
             </Link>
@@ -105,36 +108,14 @@ const Header = () => {
             <div className="flex items-center gap-4 lg:gap-6 lg:border-l lg:border-white/20 lg:pl-8">
               <LocaleSwitcher />
 
-              <button
-                onClick={() =>
-                  window.open(
-                    "https://the-district-ekkamai.hotelrunner.com/bv3/search",
-                    "_blank",
-                  )
-                }
-                className="hidden sm:block border border-white text-white px-6 py-2 text-[10px] font-bold uppercase tracking-widest hover:bg-brand hover:border-brand hover:text-black transition-all duration-300 cursor-pointer"
-              >
-                {t("checkAvailability")}
-              </button>
+              <BookingButton className="hidden sm:block px-6 py-2" />
             </div>
           </div>
         </div>
       </header>
 
       {/* Navigation Modals */}
-      <MenuOverlay
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        onBookingClick={() => {
-          setIsMenuOpen(false);
-          setIsBookingOpen(true);
-        }}
-      />
-
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
+      <MenuOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </>
   );
 };

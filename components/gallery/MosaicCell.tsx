@@ -22,7 +22,6 @@ export default function MosaicCell({
   useEffect(() => {
     if (images.length <= 1) return;
 
-    // Staggered interval to make the grid feel organic
     const timer = setInterval(
       () => {
         setIndex((prev) => (prev + 1) % images.length);
@@ -34,13 +33,10 @@ export default function MosaicCell({
   }, [images, delay]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
+    <div
       className={`relative group overflow-hidden rounded-sm bg-neutral-900 shadow-xl transition-all duration-500 hover:z-10 hover:scale-[1.02] ${className}`}
     >
-      <AnimatePresence mode="popLayout">
+      <AnimatePresence>
         <motion.div
           key={images[index]}
           initial={{ opacity: 0 }}
@@ -56,8 +52,6 @@ export default function MosaicCell({
           />
         </motion.div>
       </AnimatePresence>
-
-      {/* Removed hover overlay for a cleaner look */}
-    </motion.div>
+    </div>
   );
 }

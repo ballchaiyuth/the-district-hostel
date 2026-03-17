@@ -3,13 +3,6 @@
     "title": "The District Ekkamai | 诚挚贴心的青年旅舍服务",
     "description": "在曼谷艾卡迈 (Ekkamai) 尽享时尚、舒适且充满人情味的住宿体验。"
   },
-  "Common": {
-    "brandName": "The District Ekkamai",
-    "locationLabel": "地点",
-    "address": "曼谷瓦塔纳县 Khlong Tan Nuea 社区 素坤逸 63 巷 Park Avenue 大厦 2 楼 126/31 号 10110",
-    "reservations": "预订客房",
-    "inquiries": "常规咨询"
-  },
   "Navigation": {
     "home": "主页",
     "checkAvailability": "查看空房",
@@ -25,14 +18,6 @@
   },
   "FloatingMessenger": {
     "tagline": "随时联系我们！"
-  },
-  "Booking": {
-    "header": "查看空房",
-    "guestsLabel": "入住人数",
-    "selectDates": "请选择日期以继续",
-    "confirm": "确认预订",
-    "clear": "清除选择",
-    "alertMessage": "预订人数 {guests} 人：从 {start} 至 {end}"
   },
   "HomePage": {
     "title": "The District",
@@ -107,7 +92,16 @@
     "status": "确保您的安全与舒适",
     "description": "我们的隐私政策正在更新中，以确保您的数据得到最高标准的透明保护和安全处理。"
   },
-  "ContactPage": {
-    "header": "联系我们"
+  "Contact": {
+    "header": "联系我们",
+    "location": "地点",
+    "phone": "电话",
+    "phoneNote": "随时致电",
+    "inquiries": "常规咨询",
+    "address": "曼谷瓦塔纳县 Khlong Tan Nuea 社区 素坤逸 63 巷 Park Avenue 大厦 2 楼 126/31 号 10110",
+    "followUs": "关注我们",
+    "getDirections": "获取路线",
+    "googleMaps": "谷歌地图",
+    "responseNote": "通常在 24 小时内回复"
   }
 }

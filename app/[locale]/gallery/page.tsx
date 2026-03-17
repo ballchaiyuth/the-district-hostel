@@ -40,7 +40,8 @@ export default function GalleryPage() {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
-    const offset = 100;
+    const isMobile = window.innerWidth < 768;
+    const offset = isMobile ? 180 : 140;
     const top = el.getBoundingClientRect().top + window.scrollY - offset;
     window.scrollTo({ top, behavior: "smooth" });
   };
@@ -50,13 +51,11 @@ export default function GalleryPage() {
   return (
     <main className="bg-neutral-900 text-white min-h-screen">
       <PageHeader title={t("header")} containerClass={containerClass} />
-
       <GalleryNav
         activeSection={activeSection}
         scrollToSection={scrollToSection}
         containerClass={containerClass}
       />
-
       <section className="md:py-10">
         <div className={containerClass}>
           <div className="space-y-20">
@@ -100,7 +99,7 @@ export default function GalleryPage() {
                               WebkitMaskSize: "contain",
                             }}
                           />
-                          <span className="text-[10px] font-black text-white/60 group-hover/stat:text-brand transition-colors italic">
+                          <span className="text-[10px] font-black text-white/50 group-hover/stat:text-brand transition-colors italic">
                             x {section.capacity}
                           </span>
                         </div>

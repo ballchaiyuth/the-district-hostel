@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { DORM_ROOMS, PRIVATE_ROOMS } from "./constants";
@@ -27,6 +27,22 @@ export default function GalleryNav({
     return () => window.removeEventListener("resize", checkDesktop);
   }, []);
 
+  const allRooms = [...DORM_ROOMS, ...PRIVATE_ROOMS];
+  const activeRoom = allRooms.find((r) => r.id === activeSection);
+
+  const handleRoomClick = (id: string) => {
+    if (!isDesktop) {
+      setIsNavOpen(false);
+      // Wait for the menu to start closing so the layout settles
+      // before calculating the scroll position
+      setTimeout(() => {
+        scrollToSection(id);
+      }, 100);
+    } else {
+      scrollToSection(id);
+    }
+  };
+
   return (
     <div className="sticky top-[72px] z-30 transition-all font-bold">
       {/* Dynamic Background Wrapper */}
@@ -40,11 +56,31 @@ export default function GalleryNav({
 
       <div className={`${containerClass} relative z-10 py-2 md:py-4`}>
         <div className="flex flex-col">
-          {/* Mobile Toggle Button */}
-          <div className="md:hidden flex justify-end">
+          {/* Mobile Header Row: Indicator + Toggle */}
+          <div className="md:hidden flex items-center justify-between gap-4">
+            {/* Top Left Pill Indicator */}
+            <div className="flex-1 overflow-hidden h-6 flex items-center">
+              <AnimatePresence mode="wait">
+                {!isNavOpen && activeRoom && (
+                  <motion.div
+                    key="active-room"
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 10 }}
+                    className="bg-brand text-black text-[9px] font-black tracking-widest uppercase px-3 py-1 italic rounded-full inline-flex items-center gap-1 shadow-lg border border-white/5"
+                  >
+                    <span className="opacity-40">#</span>
+                    <span className="truncate max-w-[150px]">
+                      {activeRoom.label}
+                    </span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
             <button
               onClick={() => setIsNavOpen(!isNavOpen)}
-              className={`flex items-center justify-center gap-2 px-4 py-1.5 transition-all group min-w-[100px] rounded-full border ${
+              className={`flex items-center justify-center gap-2 px-4 py-1.5 transition-all group min-w-[120px] rounded-full border ${
                 isNavOpen
                   ? "bg-brand/20 border-brand/50 text-brand"
                   : "bg-neutral-900/80 backdrop-blur-md border-white/10 text-white/40 hover:bg-brand/10 hover:border-brand/30 hover:text-brand"
@@ -91,7 +127,7 @@ export default function GalleryNav({
                   {DORM_ROOMS.map((room) => (
                     <button
                       key={room.id}
-                      onClick={() => scrollToSection(room.id)}
+                      onClick={() => handleRoomClick(room.id)}
                       className={`text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 cursor-pointer whitespace-nowrap hover:text-shadow-brand ${
                         activeSection === room.id
                           ? "text-brand scale-110"
@@ -115,7 +151,7 @@ export default function GalleryNav({
                   {PRIVATE_ROOMS.map((room) => (
                     <button
                       key={room.id}
-                      onClick={() => scrollToSection(room.id)}
+                      onClick={() => handleRoomClick(room.id)}
                       className={`text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 cursor-pointer whitespace-nowrap hover:text-shadow-brand ${
                         activeSection === room.id
                           ? "text-brand scale-110"
