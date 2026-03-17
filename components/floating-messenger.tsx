@@ -46,7 +46,7 @@ export default function FloatingMessenger() {
               href="https://line.me/R/ti/p/@yourid"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-[#00C300] shadow-lg hover:scale-110 transition-transform"
+              className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-[#00C300] shadow-lg hover:scale-110 transition-transform cursor-pointer"
               title="LINE"
             >
               <span className="sr-only">LINE</span>
@@ -70,7 +70,7 @@ export default function FloatingMessenger() {
               href="https://m.me/yourpage"
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-[#0084FF] shadow-lg hover:scale-110 transition-transform"
+              className="group relative flex items-center justify-center w-12 h-12 rounded-full bg-[#0084FF] shadow-lg hover:scale-110 transition-transform cursor-pointer"
               title="Facebook Messenger"
             >
               <span className="sr-only">Facebook Messenger</span>
@@ -94,7 +94,7 @@ export default function FloatingMessenger() {
 
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-12 h-12 rounded-full bg-brand text-black shadow-xl hover:bg-brand-light transition-colors active:scale-95 z-50 relative"
+        className="flex items-center justify-center w-12 h-12 rounded-full bg-brand text-black shadow-xl hover:bg-brand-light transition-colors active:scale-95 z-50 relative cursor-pointer"
         aria-label="Toggle Messenger"
       >
         <motion.div

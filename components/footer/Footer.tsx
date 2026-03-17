@@ -6,8 +6,8 @@ import { BRAND_INFO } from "@/lib/constants";
 import { useTranslations } from "next-intl";
 
 const Footer = () => {
-  const t = useTranslations("Common");
   const nav = useTranslations("Navigation");
+  const contact = useTranslations("Contact");
 
   const socialIcons = [
     {
@@ -67,7 +67,7 @@ const Footer = () => {
             {/* Social Icons with Brand Hover */}
             <div className="space-y-3">
               <p className="text-[10px] font-bold tracking-widest uppercase opacity-50">
-                Follow Us
+                {contact("followUs")}
               </p>
               <div className="flex gap-4">
                 {socialIcons.map((item) => (
@@ -112,9 +112,23 @@ const Footer = () => {
 
           {/* 3. Contact Information */}
           <div className="flex flex-col items-center md:items-end space-y-8 text-xs font-light tracking-widest text-white/80 text-center md:text-right">
+            {/* Phone */}
             <div className="space-y-2">
               <p className="font-bold text-white uppercase tracking-widest">
-                {t("inquiries")}
+                {contact("phone")}
+              </p>
+              <a
+                href={`tel:${BRAND_INFO.phone.replace(/-/g, "")}`}
+                className="block text-[10px] font-bold underline decoration-brand/40 hover:text-brand transition-colors"
+              >
+                {BRAND_INFO.phone}
+              </a>
+            </div>
+
+            {/* Email */}
+            <div className="space-y-2">
+              <p className="font-bold text-white uppercase tracking-widest">
+                {contact("inquiries")}
               </p>
               <a
                 href={`mailto:${BRAND_INFO.email}`}
@@ -129,7 +143,7 @@ const Footer = () => {
         {/* 4. Legal & Address */}
         <div className="mt-10 pt-6 border-t border-white/10 flex flex-col items-center space-y-4">
           <p className="text-[10px] text-center text-white/40 tracking-wide font-light italic max-w-2xl mx-auto">
-            📍 {t("address")}
+            📍 {contact("address")}
           </p>
           <p className="text-[8px] text-white/30 uppercase tracking-[0.3em] font-bold">
             Copyright © {new Date().getFullYear()} THE DISTRICT. All Rights
