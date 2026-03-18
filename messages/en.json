@@ -93,7 +93,9 @@
       "prev": "Previous",
       "next": "Next",
       "page": "Page",
-      "of": "of"
+      "of": "of",
+      "showing": "Showing",
+      "posts": "posts"
     },
     "filter": {
       "all": "All Stories",

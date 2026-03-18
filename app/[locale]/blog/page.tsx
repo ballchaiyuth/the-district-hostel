@@ -38,6 +38,12 @@ export default async function BlogPage({
     currentPage * postsPerPage,
   );
 
+  // --- Pagination Detail Logic ---
+  const startCount =
+    filteredPosts.length > 0 ? (currentPage - 1) * postsPerPage + 1 : 0;
+  const endCount = Math.min(currentPage * postsPerPage, filteredPosts.length);
+  const totalItems = filteredPosts.length;
+
   const getPageRange = () => {
     const delta = 1;
     const range: (number | string)[] = [];
@@ -143,7 +149,7 @@ export default async function BlogPage({
               })}
             </div>
           ) : (
-            <div className="py-20 text-center text-muted-foreground/30 text-xs tracking-widest uppercase italic">
+            <div className="py-20 text-center text-muted-foreground/50 text-xs tracking-widest uppercase italic">
               {t("filter.noResults")}
             </div>
           )}
@@ -152,9 +158,9 @@ export default async function BlogPage({
           {totalPages > 1 && (
             <nav className="mt-32 w-full flex flex-col items-center">
               <div className="w-full flex justify-center mb-10">
-                <p className="text-[9px] font-bold tracking-[0.5em] uppercase text-muted-foreground/20 italic text-center translate-x-[0.25em]">
-                  {t("pagination.page")} {currentPage} {t("pagination.of")}{" "}
-                  {totalPages}
+                <p className="text-[9px] font-bold tracking-[0.5em] uppercase text-muted-foreground/50 italic text-center translate-x-[0.25em]">
+                  {t("pagination.showing")} {startCount}–{endCount}{" "}
+                  {t("pagination.of")} {totalItems} {t("pagination.posts")}
                 </p>
               </div>
 
