@@ -172,7 +172,7 @@ export default function FloatingMessenger() {
 
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-brand text-black shadow-xl hover:bg-brand-light transition-colors active:scale-95 z-50 relative cursor-pointer"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-[#fece00] text-black shadow-xl hover:bg-[#ffde4d] transition-colors active:scale-95 z-50 relative cursor-pointer"
           aria-label="Toggle Messenger"
         >
           <motion.div

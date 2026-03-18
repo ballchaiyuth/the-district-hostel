@@ -1,23 +1,20 @@
 "use client";
 
 import PageHeader from "@/components/layout/PageHeader";
+import { useIsClient } from "@/hooks/use-is-client";
 import { BRAND_INFO } from "@/lib/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ContactPage() {
   const t = useTranslations("Contact");
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const isClient = useIsClient();
   const [isMapInteracted, setIsMapInteracted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
+  if (!isClient) return null;
 
   const isDark = resolvedTheme === "dark";
   const containerClass = "max-w-7xl mx-auto px-8 md:px-20";
@@ -95,9 +92,9 @@ export default function ContactPage() {
                   }
                   className="group flex items-start gap-8 cursor-pointer"
                 >
-                  {/* Icon with Brand Masking & Glow on Hover */}
+                  {/* Icon with Brand Masking */}
                   <div
-                    className="w-8 h-8 md:w-10 md:h-10 bg-brand shrink-0 group-hover:bg-brand-light group-hover:drop-shadow-brand transition-all duration-500"
+                    className="w-8 h-8 md:w-10 md:h-10 bg-brand shrink-0 group-hover:bg-brand-light transition-all duration-500 group-hover:drop-shadow-brand"
                     style={{
                       maskImage: `url(${item.icon})`,
                       WebkitMaskImage: `url(${item.icon})`,
@@ -119,7 +116,7 @@ export default function ContactPage() {
                         <p className="block text-2xl md:text-3xl font-light tracking-tight text-foreground group-hover:text-brand-light transition-all duration-300 uppercase border-b border-brand/10 group-hover:border-brand/60">
                           {item.value}
                         </p>
-                        {/* Subtle Link SVG - Always visible, glows on hover */}
+                        {/* Subtle Link SVG */}
                         <div
                           className="w-3.5 h-3.5 bg-brand opacity-30 group-hover:opacity-100 group-hover:translate-x-1 group-hover:scale-110 transition-all duration-500 shrink-0"
                           style={{
@@ -136,7 +133,7 @@ export default function ContactPage() {
                       </div>
                       {item.subValue && (
                         <p
-                          className={`font-light leading-relaxed max-w-sm group-hover:text-white transition-colors ${
+                          className={`font-light leading-relaxed max-w-sm group-hover:text-brand dark:group-hover:text-brand-light transition-all duration-300 ${
                             item.label === t("inquiries") ||
                             item.label === t("phone")
                               ? "text-[10px] font-bold text-foreground/30 uppercase tracking-[0.3em] pt-1"
@@ -157,7 +154,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="space-y-10 pt-8 lg:pt-12 border-t border-white/5 order-3"
+              className="space-y-10 pt-8 lg:pt-12 border-t-2 border-foreground/10 order-3"
             >
               {/* Follow Us Segment */}
               <div className="space-y-3">
@@ -209,7 +206,7 @@ export default function ContactPage() {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="space-y-4 order-2 lg:row-span-2 pt-12 border-t border-border lg:pt-0 lg:border-t-0"
+              className="space-y-4 order-2 lg:row-span-2 pt-12 border-t-2 border-foreground/10 lg:pt-0 lg:border-t-0"
             >
               {/* Map Header */}
               <div className="flex items-center gap-8 group/mapheader cursor-default">

@@ -80,19 +80,35 @@ export default function BlogNav({
                     </span>
                   </motion.div>
                 ) : (
-                  !isNavOpen &&
-                  selectedTag && (
+                  !isNavOpen && (
                     <motion.div
-                      key="tag"
+                      key={selectedTag || "all"}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 10 }}
                       className="bg-brand text-black text-[9px] font-black tracking-widest uppercase px-3 py-1 italic rounded-full inline-flex items-center gap-1 shadow-lg border border-white/5"
                     >
-                      <span className="opacity-40">#</span>
-                      <span className="truncate max-w-[150px]">
-                        {selectedTag}
-                      </span>
+                      {selectedTag ? (
+                        <>
+                          <span className="opacity-40">#</span>
+                          <span className="truncate max-w-[150px]">
+                            {selectedTag}{" "}
+                            <span className="opacity-50 ml-1">
+                              (
+                              {allTags.find((t) => t.name === selectedTag)
+                                ?.count || 0}
+                              )
+                            </span>
+                          </span>
+                        </>
+                      ) : (
+                        <span>
+                          {allLabel}{" "}
+                          <span className="opacity-50 ml-1">
+                            ({totalCount})
+                          </span>
+                        </span>
+                      )}
                     </motion.div>
                   )
                 )}
