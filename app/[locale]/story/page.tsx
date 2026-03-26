@@ -8,7 +8,7 @@ export default function StoryPage() {
   return (
     <main className="min-h-screen bg-muted lg:flex lg:flex-col transition-colors duration-300">
       <PageHeader title={t("title")} containerClass={containerClass} />
-      <div className={`${containerClass} flex flex-wrap pb-20`}>
+      <div className={`flex flex-wrap pb-20`}>
         <div className="order-1 lg:w-1/2 w-full min-h-[80vh] bg-[url('/images/story/top.webp')] bg-cover bg-center" />
 
         <div className="order-2 lg:w-1/2 w-full px-10 py-12 lg:px-16 lg:py-16 flex flex-col justify-center">
