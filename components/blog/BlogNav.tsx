@@ -27,8 +27,9 @@ export default function BlogNav({
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialScrollY = useRef(0);
+  const navRef = useRef<HTMLDivElement>(null);
 
-  // Close menu on significant scroll or Escape key
+  // Close menu on significant scroll, Escape key, or click outside
   useEffect(() => {
     if (!isNavOpen) return;
 
@@ -49,16 +50,24 @@ export default function BlogNav({
       }
     };
 
+    const handleClickOutside = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setIsNavOpen(false);
+      }
+    };
+
     // Add delay before listening to avoid immediate trigger from the open click/touch if it has momentum
     const timeout = setTimeout(() => {
       window.addEventListener("scroll", handleScroll, { passive: true });
       window.addEventListener("keydown", handleKeyDown);
+      document.addEventListener("mousedown", handleClickOutside);
     }, 100);
 
     return () => {
       clearTimeout(timeout);
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isNavOpen]);
 
@@ -78,7 +87,7 @@ export default function BlogNav({
   };
 
   return (
-    <div className="sticky top-[80px] z-60 transition-all font-bold pb-5 md:py-6 pointer-events-none">
+    <div className="sticky top-[80px] z-40 transition-all font-bold pb-5 md:py-6 pointer-events-none">
       {/* Click Outside Overlay */}
       <AnimatePresence>
         {isNavOpen && (
@@ -137,10 +146,11 @@ export default function BlogNav({
         </div>
 
         {/* CENTER: Floating Menu (Visible when open) */}
-        <div className="absolute left-1/2 -translate-x-1/2 z-10 w-full flex justify-center top-0 md:top-1/2 md:-translate-y-1/2 pointer-events-none">
+        <div className="absolute left-1/2 -translate-x-1/2 z-10 w-full flex justify-center top-0 pointer-events-none">
           <AnimatePresence>
             {isNavOpen && (
               <motion.div
+                ref={navRef}
                 initial={{ opacity: 0, y: -20, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -20, scale: 0.95 }}

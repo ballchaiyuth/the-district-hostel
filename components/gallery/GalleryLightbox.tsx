@@ -66,13 +66,18 @@ function NextJsImage({
   );
 }
 
+interface CustomSlide extends SlideImage {
+  groupLabel?: string;
+  description?: string;
+}
+
 /**
  * Custom Floating Captions Overlay
  * Replaces the built-in yarl__captions plugin to get rid of the "black bar".
  */
 function CustomCaptions() {
   const { slides, currentIndex } = useLightboxState();
-  const slide = slides[currentIndex] as any; // Cast as any because slide contains custom fields
+  const slide = slides[currentIndex] as CustomSlide; // Define proper type for custom fields
 
   if (!slide?.groupLabel && !slide?.description) return null;
 
